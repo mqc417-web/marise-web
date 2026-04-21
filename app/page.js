@@ -251,7 +251,11 @@ export default function Home() {
                     {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
                   </p>
                   {product.description && (
-                    <p className={styles.productDesc}>{product.description}</p>
+                    //<p className={styles.productDesc}>{product.description}</p>
+                    <div 
+                      className={styles.productDesc}
+                      dangerouslySetInnerHTML={{ __html: product.description }}
+                    />
                   )}
                   <div className={styles.productPriceContainer}>
                     <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>

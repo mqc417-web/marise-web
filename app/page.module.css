@@ -426,9 +426,19 @@
   line-height: 1.5;
   margin-bottom: 12px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.productDesc br {
+  display: block;
+  content: '';
+  margin: 4px 0;
+}
+
+.productDesc p {
+  margin: 0;
 }
 
 .productPrice {
