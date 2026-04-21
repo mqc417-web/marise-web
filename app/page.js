@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
+import Link from 'next/link'
 //cambio marisa para el Logo
 import Image from 'next/image';
+
 
 // Logo SVG paths
 /*const LogoPath = () => (
@@ -70,6 +72,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const MAYO_10_CATEGORIES = ['Día de las Madres'];
 
   useEffect(() => {
     async function loadProducts() {
@@ -119,9 +122,9 @@ export default function Home() {
     <main>
       {/* NAV */}
       <nav className={styles.nav}>
-        <div className={styles.navLogo}>
+        <a href="#inicio" className={styles.navLogo}>
           <LogoPath />
-        </div>
+        </a>
         <ul className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ''}`}>
           <li><a href="#inicio" onClick={() => setMenuOpen(false)}>Inicio</a></li>
           <li><a href="#nosotros" onClick={() => setMenuOpen(false)}>Nosotros</a></li>
@@ -157,6 +160,62 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* NUEVA SECCIÓN: MAYO 10 */}
+      {filtered.length > 0 && (
+        <section className={styles.mayo10Section}>
+          <div className={styles.mayo10Header}>
+            <h2>✨ Especial Mamá ✨</h2>
+            <p>10 de Mayo - Regalos perfectos para las mamás</p>
+          </div>
+          
+          <div className={styles.mayo10Grid}>
+            {products
+              .filter(p => MAYO_10_CATEGORIES.includes(p.category?.name))
+              .slice(0, 6)
+              .map(product => (
+              <div key={product.id} className={styles.productCard}>
+                <div className={styles.productImg}>
+                  {product.image ? (
+                    <img src={product.image} alt={product.name} />
+                  ) : (
+                    <div className={styles.productImgPlaceholder}>✦</div>
+                  )}
+                </div>
+                <div className={styles.productInfo}>
+                  {product.category && (
+                    <p className={styles.productCategory}>{product.category.name}</p>
+                  )}
+                  <p className={styles.productName}>
+                    {product.name}
+                    {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
+                  </p>
+                  {product.description && (
+                    <div 
+                      className={styles.productDesc}
+                      dangerouslySetInnerHTML={{ __html: product.description }}
+                    />
+                  )}
+                  <div className={styles.productPriceContainer}>
+                    <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
+                    <p className={styles.productPriceSmall}>IVA incluido</p>
+                  </div>
+                  
+                  {/* BOTÓN WHATSAPP MINIMALISTA */}
+                  <a
+                    href={`https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.productCardWhatsApp}
+                  >
+                    Envíame más info 💌
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* SOBRE NOSOTROS */}
       <section className={styles.about} id="nosotros">
@@ -261,6 +320,15 @@ export default function Home() {
                     <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
                     <p className={styles.productPriceSmall}>IVA incluido</p>
                   </div>
+                  {/* NUEVO: Botón WhatsApp minimalista */}
+                  <a
+                    href={`https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.productCardWhatsApp}
+                  >
+                    Envíame más info 💌
+                  </a>
                 </div>
               </div>
             ))}

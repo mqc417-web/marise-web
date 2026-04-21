@@ -737,3 +737,102 @@
   color: #9B6B4A;
   font-weight: 400;
 }
+
+/* BOTÓN WHATSAPP MINIMALISTA EN CARDS - NUEVO */
+.productCardWhatsApp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #DAC4B7;
+  color: #3a2e2a;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  transition: all 0.2s;
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.productCardWhatsApp:hover {
+  background: #c8b5a0;
+  transform: translateY(-2px);
+}
+
+.productCardWhatsApp:active {
+  transform: translateY(0);
+}
+
+/* SECCIÓN ESPECIAL MAYO 10 - NUEVO */
+.mayo10Section {
+  background: #f9e5e8;
+  padding: 60px 48px;
+  text-align: center;
+  border-top: 1px solid #e8d0d5;
+  border-bottom: 1px solid #e8d0d5;
+}
+
+.mayo10Header {
+  margin-bottom: 48px;
+}
+
+.mayo10Header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #2a1f1a;
+  margin-bottom: 10px;
+}
+
+.mayo10Header p {
+  font-size: 15px;
+  color: #6a5a50;
+}
+
+.mayo10Grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Reutiliza los estilos de productCard sin cambios */
+.mayo10Grid .productCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e8ddd0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1 / 1.3;
+}
+
+.mayo10Grid .productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(58, 46, 42, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mayo10Section {
+    padding: 60px 20px;
+  }
+
+  .mayo10Grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .mayo10Grid {
+    grid-template-columns: 1fr;
+  }
+}
