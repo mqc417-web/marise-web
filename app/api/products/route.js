@@ -43,7 +43,7 @@ export async function GET() {
   try {
     console.log('Fetching products from Odoo...')
 
-    // Fetch published product variants
+    // 1. Fetch published product variants
     const variants = await callOdooRPC('product.product', 'search_read', [], {
       domain: [['product_tmpl_id.is_published', '=', true]],
       fields: [
@@ -67,7 +67,41 @@ export async function GET() {
 
     console.log(`Found ${variants.length} product variants`)
 
-    // Get attribute details
+    // 2. Get the pricelist ID for "menudeo"
+    const priceLists = await callOdooRPC('product.pricelist', 'search_read', [], {
+      domain: [['name', '=', 'menudeo']],
+      fields: ['id'],
+    })
+
+    const priceListId = priceLists?.[0]?.id
+
+    // 3. Get prices from pricelist items
+    let priceMap = {}
+    if (priceListId && variants.length > 0) {
+      try {
+        const priceItems = await callOdooRPC(
+          'product.pricelist.item',
+          'search_read',
+          [],
+          {
+            domain: [['pricelist_id', '=', priceListId]],
+            fields: ['product_id', 'fixed_price', 'percent_price', 'price_discount'],
+          }
+        )
+
+        priceItems.forEach(item => {
+          if (item.product_id) {
+            const productId = item.product_id[0]
+            priceMap[productId] = item.fixed_price || 0
+          }
+        })
+        console.log('Prices from pricelist items:', priceMap)
+      } catch (err) {
+        console.warn('Could not fetch pricelist items:', err.message)
+      }
+    }
+
+    // 4. Get attribute details
     const attributeIds = new Set()
     variants.forEach(v => {
       if (Array.isArray(v.product_template_attribute_value_ids)) {
@@ -87,18 +121,19 @@ export async function GET() {
       })
     }
 
-    // Format products
+    // 5. Format products
     const formatted = variants.map(p => {
-      let priceWithTax = p.list_price || 0
+      // Usar precio de la pricelist si existe, sino usar list_price
+      const basePrice = priceMap[p.id] || p.list_price || 0
+      let priceWithTax = basePrice
 
       if (p.taxes_id && p.taxes_id.length > 0) {
         const taxRate = 0.16
-        priceWithTax = p.list_price * (1 + taxRate)
+        priceWithTax = basePrice * (1 + taxRate)
       }
 
       const templateName = p.product_tmpl_id ? p.product_tmpl_id[1] : p.name
-      
-      // Obtener nombres de atributos
+
       let variant = ''
       if (Array.isArray(p.product_template_attribute_value_ids)) {
         const attrNames = p.product_template_attribute_value_ids
@@ -109,10 +144,10 @@ export async function GET() {
 
       return {
         id: p.id,
-        name: templateName.replace(/^\[\d+\]\s*/, '').trim(), // Elimina [números] al inicio
+        name: templateName.replace(/^\[\d+\]\s*/, '').trim(),
         variant: variant,
         description: p.description_sale || '',
-        price: p.list_price || 0,
+        price: basePrice,
         priceWithTax: Math.round(priceWithTax * 100) / 100,
         image: p.image_1920 ? `data:image/png;base64,${p.image_1920}` : null,
         category: p.categ_id ? { id: p.categ_id[0], name: p.categ_id[1] } : null,
