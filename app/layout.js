@@ -7,6 +7,20 @@ export const metadata = {
   icons: {
     icon: '/Favicon.ico',
   },
+  openGraph: {
+    title: 'Marise - Hacemos tus ideas arte',
+    description: 'Papelería social y productos personalizados para acompañarte en tus mejores momentos.',
+    url: 'https://marise-web.vercel.app',
+    siteName: 'Marise',
+    images: [
+      {
+        url: 'https://marise-web.vercel.app/images/ThumbnailMarise.png', // ← CAMBIAR POR TU IMAGEN
+        width: 1200,
+        height: 630,
+        alt: 'Marise - Hacemos tus ideas arte',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({ children }) {
