@@ -72,6 +72,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const SHOW_MAYO_10 = true;  // Cambiar a false para ocultar
   const MAYO_10_CATEGORIES = ['Día de las Madres'];
 
   useEffect(() => {
@@ -170,7 +171,7 @@ export default function Home() {
           </div>
           
           <div className={styles.mayo10Grid}>
-            {products
+            {SHOW_MAYO_10 && products
               .filter(p => MAYO_10_CATEGORIES.includes(p.category?.name))
               .slice(0, 6)
               .map(product => (
