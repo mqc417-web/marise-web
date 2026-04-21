@@ -72,7 +72,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const SHOW_MAYO_10 = true;  // Cambiar a false para ocultar
+  const SHOW_MAYO_10 = false;  // Cambiar a false para ocultar
   const MAYO_10_CATEGORIES = ['Día de las Madres'];
 
   useEffect(() => {
