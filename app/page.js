@@ -63,6 +63,9 @@ const WhatsAppIcon = ({size = 20}) => (
 
 const WA_URL = 'https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20un%20producto%20personalizado%20%F0%9F%8E%A8'
 
+const SHOW_MAYO_10 = true;  // Cambiar a false para ocultar
+const MAYO_10_CATEGORIES = ['Día de las Madres'];
+
 export default function Home() {
   const [products, setProducts] = useState([])
   const [filtered, setFiltered] = useState([])
@@ -72,8 +75,15 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const SHOW_MAYO_10 = false;  // Cambiar a false para ocultar
-  const MAYO_10_CATEGORIES = ['Día de las Madres'];
+
+  // ✅ AGREGAR ESTO (nuevo):
+  const [mounted, setMounted] = useState(false)
+  
+  // ✅ AGREGAR ESTO (nuevo):
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
 
   useEffect(() => {
     async function loadProducts() {
@@ -171,7 +181,7 @@ export default function Home() {
           </div>
           
           <div className={styles.mayo10Grid}>
-            {SHOW_MAYO_10 && products
+            {mounted && SHOW_MAYO_10 && products
               .filter(p => MAYO_10_CATEGORIES.includes(p.category?.name))
               .slice(0, 6)
               .map(product => (
