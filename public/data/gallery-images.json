@@ -1,0 +1,198 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Bolsas_Bowlito.webp",
+      "alt": "Galería Marise - Imagen 1",
+      "category": "trabajos"
+    },
+    {
+      "id": 2,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_CaketoperNati.webp",
+      "alt": "Galería Marise - Imagen 2",
+      "category": "trabajos"
+    },
+    {
+      "id": 3,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Bluey.webp",
+      "alt": "Galería Marise - Imagen 3",
+      "category": "trabajos"
+    },
+    {
+      "id": 4,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_IronMan.webp",
+      "alt": "Galería Marise - Imagen 4",
+      "category": "trabajos"
+    },
+    {
+      "id": 5,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_JaviFest.webp",
+      "alt": "Galería Marise - Imagen 5",
+      "category": "trabajos"
+    },
+    {
+      "id": 6,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_MetaIronman.webp",
+      "alt": "Galería Marise - Imagen 6",
+      "category": "trabajos"
+    },
+    {
+      "id": 7,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Runner.webp",
+      "alt": "Galería Marise - Imagen 7",
+      "category": "trabajos"
+    },
+    {
+      "id": 8,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Susi.webp",
+      "alt": "Galería Marise - Imagen 8",
+      "category": "trabajos"
+    },
+    {
+      "id": 9,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VaritasMagicas.webp",
+      "alt": "Galería Marise - Imagen 9",
+      "category": "trabajos"
+    },
+    {
+      "id": 10,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VidaNomada.webp",
+      "alt": "Galería Marise - Imagen 10",
+      "category": "trabajos"
+    },
+    {
+      "id": 11,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketoppers_Troquelados.webp",
+      "alt": "Galería Marise - Imagen 11",
+      "category": "trabajos"
+    },
+    {
+      "id": 12,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cards_Fitpass.webp",
+      "alt": "Galería Marise - Imagen 12",
+      "category": "trabajos"
+    },
+    {
+      "id": 13,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cupcaketoppers.webp",
+      "alt": "Galería Marise - Imagen 13",
+      "category": "trabajos"
+    },
+    {
+      "id": 14,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Encendedores.webp",
+      "alt": "Galería Marise - Imagen 14",
+      "category": "trabajos"
+    },
+    {
+      "id": 15,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Esfera_Personalizada.webp",
+      "alt": "Galería Marise - Imagen 15",
+      "category": "trabajos"
+    },
+    {
+      "id": 16,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Espejo.webp",
+      "alt": "Galería Marise - Imagen 16",
+      "category": "trabajos"
+    },
+    {
+      "id": 17,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Globo_Personalizado.webp",
+      "alt": "Galería Marise - Imagen 17",
+      "category": "trabajos"
+    },
+    {
+      "id": 18,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Invitacion.webp",
+      "alt": "Galería Marise - Imagen 18",
+      "category": "trabajos"
+    },
+    {
+      "id": 19,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Mameluco_Bebe.webp",
+      "alt": "Galería Marise - Imagen 19",
+      "category": "trabajos"
+    },
+    {
+      "id": 20,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Medallas_Olimpicas.webp",
+      "alt": "Galería Marise - Imagen 20",
+      "category": "trabajos"
+    },
+    {
+      "id": 21,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Papel_Personalizado.webp",
+      "alt": "Galería Marise - Imagen 21",
+      "category": "trabajos"
+    },
+    {
+      "id": 22,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Playcase.webp",
+      "alt": "Galería Marise - Imagen 22",
+      "category": "trabajos"
+    },
+    {
+      "id": 23,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Recuerdito_Miel.webp",
+      "alt": "Galería Marise - Imagen 23",
+      "category": "trabajos"
+    },
+    {
+      "id": 24,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Sobres_Make.webp",
+      "alt": "Galería Marise - Imagen 24",
+      "category": "trabajos"
+    },
+    {
+      "id": 25,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Charcuteria.webp",
+      "alt": "Galería Marise - Imagen 25",
+      "category": "trabajos"
+    },
+    {
+      "id": 26,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Termos.webp",
+      "alt": "Galería Marise - Imagen 26",
+      "category": "trabajos"
+    },
+    {
+      "id": 27,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Tag.webp",
+      "alt": "Galería Marise - Imagen 27",
+      "category": "trabajos"
+    },
+    {
+      "id": 28,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Esmerilada.webp",
+      "alt": "Galería Marise - Imagen 28",
+      "category": "trabajos"
+    },
+    {
+      "id": 29,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Tags_Cajas.webp",
+      "alt": "Galería Marise - Imagen 29",
+      "category": "trabajos"
+    },
+    {
+      "id": 30,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Totebag.webp",
+      "alt": "Galería Marise - Imagen 30",
+      "category": "trabajos"
+    },
+    {
+      "id": 31,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker.webp",
+      "alt": "Galería Marise - Imagen 31",
+      "category": "trabajos"
+    },
+    {
+      "id": 32,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker_Chupon.webp",
+      "alt": "Galería Marise - Imagen 32",
+      "category": "trabajos"
+    }
+  ],
+  "lastUpdated": "2026-04-22T22:28:19.743Z",
+  "totalImages": 32
+}

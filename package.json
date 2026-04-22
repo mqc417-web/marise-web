@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "marise-web",
   "version": "0.1.0",
   "private": true,
@@ -6,9 +7,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gallery:generate": "node scripts/generate-gallery.js"
   },
   "dependencies": {
+    "@vercel/blob": "^2.3.3",
     "axios": "^1.15.1",
     "dotenv": "^17.4.2",
     "next": "16.2.4",

@@ -3,56 +3,49 @@
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
 import Link from 'next/link'
-//cambio marisa para el Logo
-import Image from 'next/image';
+import Image from 'next/image'
+import Gallery from '@/app/components/gallery'
 
+// Importar configuración centralizada
+import {
+  CATALOG_CATEGORIES,
+  SHOW_MAYO_10,
+  MAYO_10_CATEGORIES,
+  SHOW_GALLERY,
+  WHATSAPP_NUMBER,
+  DEFAULT_WHATSAPP_MESSAGE,
+} from '@/app/config.js'
 
 // Logo SVG paths
-/*const LogoPath = () => (
-  <svg viewBox="0 0 810 600" xmlns="http://www.w3.org/2000/svg" style={{height: '36px', width: 'auto'}}>
-    <path fill="currentColor" d="M 172.722656 427.886719 L 145.664062 187.71875 C 144.472656 183.921875 152.640625 182.789062 152.640625 182.789062 L 160.804688 181.660156 L 160.804688 179.523438 L 118.472656 179.523438 L 118.472656 181.28125 C 129.738281 180.144531 128.925781 187.339844 128.925781 187.339844 L 107.535156 375.992188 L 86.296875 187.535156 C 85.488281 180.339844 98.71875 181.28125 98.71875 181.28125 L 98.71875 179.523438 L 56.386719 179.523438 L 56.386719 181.660156 L 64.550781 182.789062 C 71.148438 183.703125 71.539062 187.304688 71.539062 187.304688 L 44.757812 423.371094 C 43.417969 435.171875 32.390625 433.933594 32.390625 433.933594 L 32.390625 436.070312 L 62.417969 436.070312 L 62.417969 433.933594 C 51.828125 433.933594 51.523438 428.070312 51.523438 428.070312 L 75.703125 214.9375 L 100.328125 433.429688 L 114.007812 433.429688 L 134.074219 206.316406 L 159.101562 428.410156 C 158.421875 431.929688 152.105469 432.800781 152.105469 432.800781 L 143.941406 433.933594 L 143.941406 436.070312 L 186.273438 436.070312 L 186.273438 434.308594 C 173.535156 435.082031 172.722656 427.886719 172.722656 427.886719 Z"/>
-    <text x="205" y="430" fontFamily="'Playfair Display', serif" fontSize="270" fill="currentColor" fontWeight="400">arise</text>
-  </svg>
-)*/
-
-//Logo marisa
 const LogoPath = () => (
   <Image 
     src="/images/Logo-Marise-SVG-cafe.svg" 
     alt="Logo Marise" 
-    width={400} // Ajusta el tamaño según necesites
+    width={400}
     height={120} 
     style={{ 
       height: '60px', 
       width: 'auto',
-      maxWidth: '90vw' // En mobile ocupa máximo 90% del ancho
+      maxWidth: '90vw'
     }}
-    priority // Esto ayuda a que el logo cargue más rápido por ser un elemento principal
+    priority
   />
 );
 
-/* const MonogramSVG = () => (
-  <svg viewBox="0 0 810 810" xmlns="http://www.w3.org/2000/svg" style={{width: '130px', height: '130px'}}>
-    <path fill="#4a1a35" d="M 399.039062 235.96875 C 399.039062 228.351562 405.214844 222.171875 412.839844 222.171875 C 420.457031 222.171875 426.636719 228.351562 426.636719 235.96875 C 426.636719 243.59375 420.457031 249.769531 412.839844 249.769531 C 405.214844 249.769531 399.039062 243.59375 399.039062 235.96875 Z M 304.941406 235.96875 C 304.941406 228.351562 311.117188 222.171875 318.738281 222.171875 C 326.359375 222.171875 332.539062 228.351562 332.539062 235.96875 C 332.539062 243.59375 326.359375 249.769531 318.738281 249.769531 C 311.117188 249.769531 304.941406 243.59375 304.941406 235.96875 Z M 495.445312 235.96875 C 495.445312 228.351562 501.625 222.171875 509.246094 222.171875 C 516.863281 222.171875 523.042969 228.351562 523.042969 235.96875 C 523.042969 243.59375 516.863281 249.769531 509.246094 249.769531 C 501.625 249.769531 495.445312 243.59375 495.445312 235.96875 Z M 303.800781 528.75 L 303.785156 279.449219 L 226.269531 279.449219 L 205.917969 330.6875 L 210.25 332.003906 C 210.25 332.003906 227.777344 286.710938 264.519531 286.710938 L 296.523438 286.710938 L 296.523438 438.183594 C 289.558594 459.894531 263.890625 530.335938 223.832031 530.585938 C 173.710938 530.902344 194.4375 387.953125 260.257812 417.972656 C 278.855469 426.453125 283.734375 412.308594 283.734375 412.308594 L 276.738281 406.128906 C 276.738281 406.128906 181.75 392.46875 181.75 486.433594 C 181.75 559.597656 267.5625 548.144531 296.523438 476.378906 L 296.523438 528.753906 L 314.675781 536.070312 L 314.675781 533.933594 C 305.480469 533.933594 303.800781 531.105469 303.800781 528.75 Z M 402.890625 350.285156 C 396.628906 350.285156 349.226562 350.417969 349.226562 350.417969 L 349.226562 286.835938 L 404.308594 286.835938 C 436.765625 291.835938 436.765625 318.546875 436.765625 318.546875 C 436.765625 344.367188 414.347656 350.285156 402.890625 350.285156 Z M 335.628906 286.765625 L 335.628906 528.828125 C 323.742188 533.933594 323.742188 533.933594 323.742188 533.933594 L 323.742188 536.070312 L 360.078125 536.070312 L 360.078125 533.933594 C 349.226562 529.035156 349.226562 529.035156 349.226562 357.675781 L 403.5625 357.675781 C 460.113281 459.574219 460.113281 459.574219 476.8125 459.574219 C 483.734375 595.578125 558.105469 592.136719 558.105469 592.136719 L 581.082031 590.179688 C 576.855469 588.421875 576.855469 588.421875 517.316406 588.421875 C 462.542969 568.691406 476.8125 459.574219 476.8125 459.574219 C 491.082031 350.417969 424.195312 354.988281 424.195312 354.988281 C 451.589844 318.125 451.589844 318.125 405.113281 279.574219 L 323.742188 279.523438 L 323.742188 281.660156 C 335.5 281.300781 335.628906 286.765625 335.628906 286.765625 Z M 648.191406 401.128906 L 593.414062 354.773438 C 577.726562 314.519531 613.132812 284.527344 613.132812 284.527344 C 649.753906 290.582031 665.015625 332.003906 665.015625 332.003906 L 669.347656 330.6875 L 650.882812 279.523438 L 615.324219 279.523438 C 565.464844 320.488281 587.238281 368.335938 587.238281 368.335938 C 620.148438 396.222656 661.414062 421.15625 661.414062 465.371094 C 661.414062 509.589844 603.03125 524.636719 603.03125 524.636719 C 541.285156 467.960938 564.097656 421.761719 564.097656 421.761719 L 561.429688 419.539062 C 541.285156 467.960938 541.285156 467.960938 575.644531 528.449219 C 609.398438 536.070312 646.710938 530.035156 646.710938 530.035156 C 680.769531 487.28125 680.769531 467.808594 648.191406 401.128906 Z M 730.03125 531.257812 L 716.085938 531.257812 L 716.085938 355.933594 L 725.132812 355.933594 C 761.6875 400.40625 761.6875 400.40625 766.960938 401.722656 L 737.039062 321.644531 L 733.800781 320.515625 L 736.625 335.398438 C 726.9375 350.09375 716.085938 350.09375 716.085938 350.09375 L 716.085938 286.554688 L 730.03125 284.332031 C 784.300781 332.003906 784.300781 332.003906 788.632812 330.6875 L 770.164062 279.523438 L 690.605469 279.523438 L 690.605469 281.660156 C 702.359375 281.300781 702.488281 286.765625 702.488281 528.828125 C 690.605469 533.933594 690.605469 533.933594 690.605469 536.070312 L 770.164062 536.070312 L 788.632812 484.902344 L 784.300781 483.585938 C 766.773438 531.257812 730.03125 531.257812 730.03125 531.257812 Z M 521.097656 478.097656 L 527.414062 478.097656 L 527.414062 475.964844 C 516.566406 471.0625 516.566406 286.554688 516.566406 286.554688 C 527.414062 281.660156 527.414062 279.523438 491.082031 279.523438 L 491.082031 281.660156 C 502.964844 286.765625 502.964844 470.859375 491.082031 475.964844 L 491.082031 478.097656 Z"/>
-  </svg>
-) */
-
-//Monograma marisa
 const MonogramSVG = () => (
   <Image 
     src="/images/MonogramaMarise.svg" 
     alt="Monograma Marise" 
-    width={200} // Ajusta el tamaño según necesites
+    width={200}
     height={200} 
     style={{ 
       height: '200px', 
       width: 'auto',
-      maxWidth: '90vw' // En mobile ocupa máximo 90% del ancho
+      maxWidth: '90vw'
     }}
-    priority // Esto ayuda a que el logo cargue más rápido por ser un elemento principal
+    priority
   />
 );
-
 
 // WhatsApp SVG
 const WhatsAppIcon = ({size = 20}) => (
@@ -61,10 +54,7 @@ const WhatsAppIcon = ({size = 20}) => (
   </svg>
 )
 
-const WA_URL = 'https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20un%20producto%20personalizado%20%F0%9F%8E%A8'
-
-const SHOW_MAYO_10 = true;  // Cambiar a false para ocultar
-const MAYO_10_CATEGORIES = ['Día de las Madres'];
+const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${DEFAULT_WHATSAPP_MESSAGE}`
 
 export default function Home() {
   const [products, setProducts] = useState([])
@@ -75,16 +65,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
-
-  // ✅ AGREGAR ESTO (nuevo):
   const [mounted, setMounted] = useState(false)
   
-  // ✅ AGREGAR ESTO (nuevo):
   useEffect(() => {
     setMounted(true)
   }, [])
 
-
+  // Cargar productos desde la API
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -93,9 +80,10 @@ export default function Home() {
         if (data.error) throw new Error(data.error)
         setProducts(data.products)
         setFiltered(data.products)
-        // Extract unique categories
-        const cats = [...new Set(data.products.map(p => p.category?.name).filter(Boolean))]
-        setCategories(cats)
+        
+        // Extraer categorías únicas
+        const allCategories = [...new Set(data.products.map(p => p.category?.name).filter(Boolean))]
+        setCategories(allCategories)
       } catch (err) {
         console.error(err)
         setError('No se pudieron cargar los productos.')
@@ -106,18 +94,33 @@ export default function Home() {
     loadProducts()
   }, [])
 
-  // Filter products by category and search
+  // Filtrar productos por categoría y búsqueda
   useEffect(() => {
     let result = products
+
+    // Filtrar por categoría del catálogo
+    // Si CATALOG_CATEGORIES está vacío, mostrar todas excepto las del mayo 10
+    if (CATALOG_CATEGORIES.length === 0) {
+      // Mostrar todas menos las de Mayo 10
+      result = result.filter(p => !MAYO_10_CATEGORIES.includes(p.category?.name))
+    } else {
+      // Mostrar solo las categorías especificadas
+      result = result.filter(p => CATALOG_CATEGORIES.includes(p.category?.name))
+    }
+
+    // Filtrar por categoría activa (si no es "Todos")
     if (activeCategory !== 'Todos') {
       result = result.filter(p => p.category?.name === activeCategory)
     }
+
+    // Filtrar por búsqueda
     if (search.trim()) {
       result = result.filter(p =>
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.description?.toLowerCase().includes(search.toLowerCase())
       )
     }
+
     setFiltered(result)
   }, [activeCategory, search, products])
 
@@ -128,6 +131,11 @@ export default function Home() {
       minimumFractionDigits: 0,
     }).format(price)
   }
+
+  // Obtener categorías para mostrar en filtros
+  const availableCategories = CATALOG_CATEGORIES.length === 0
+    ? categories.filter(cat => !MAYO_10_CATEGORIES.includes(cat))
+    : categories.filter(cat => CATALOG_CATEGORIES.includes(cat))
 
   return (
     <main>
@@ -140,6 +148,7 @@ export default function Home() {
           <li><a href="#inicio" onClick={() => setMenuOpen(false)}>Inicio</a></li>
           <li><a href="#nosotros" onClick={() => setMenuOpen(false)}>Nosotros</a></li>
           <li><a href="#catalogo" onClick={() => setMenuOpen(false)}>Catálogo</a></li>
+          {SHOW_GALLERY && <li><a href="#galeria" onClick={() => setMenuOpen(false)}>Galería</a></li>}
           <li><a href="#clientes" onClick={() => setMenuOpen(false)}>Clientes</a></li>
           <li><a href="#contacto" onClick={() => setMenuOpen(false)}>Contacto</a></li>
         </ul>
@@ -172,8 +181,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NUEVA SECCIÓN: MAYO 10 */}
-      {filtered.length > 0 && (
+      {/* SECCIÓN ESPECIAL: MAYO 10 */}
+      {mounted && SHOW_MAYO_10 && products.length > 0 && (
         <section className={styles.mayo10Section}>
           <div className={styles.mayo10Header}>
             <h2>✨ Especial Mamá ✨</h2>
@@ -181,7 +190,7 @@ export default function Home() {
           </div>
           
           <div className={styles.mayo10Grid}>
-            {mounted && SHOW_MAYO_10 && products
+            {products
               .filter(p => MAYO_10_CATEGORIES.includes(p.category?.name))
               .slice(0, 6)
               .map(product => (
@@ -212,9 +221,8 @@ export default function Home() {
                     <p className={styles.productPriceSmall}>IVA incluido</p>
                   </div>
                   
-                  {/* BOTÓN WHATSAPP MINIMALISTA */}
                   <a
-                    href={`https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.productCardWhatsApp}
@@ -274,9 +282,9 @@ export default function Home() {
           />
         </div>
 
-        {/* Filtros */}
+        {/* Filtros - Usar categorías disponibles */}
         <div className={styles.filterBar}>
-          {['Todos', ...categories].map(cat => (
+          {['Todos', ...availableCategories].map(cat => (
             <button
               key={cat}
               className={`${styles.filterPill} ${activeCategory === cat ? styles.filterPillActive : ''}`}
@@ -321,7 +329,6 @@ export default function Home() {
                     {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
                   </p>
                   {product.description && (
-                    //<p className={styles.productDesc}>{product.description}</p>
                     <div 
                       className={styles.productDesc}
                       dangerouslySetInnerHTML={{ __html: product.description }}
@@ -331,9 +338,8 @@ export default function Home() {
                     <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
                     <p className={styles.productPriceSmall}>IVA incluido</p>
                   </div>
-                  {/* NUEVO: Botón WhatsApp minimalista */}
                   <a
-                    href={`https://wa.me/523312678238?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.productCardWhatsApp}
@@ -346,6 +352,9 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      {/* GALERÍA DE IMÁGENES */}
+      {SHOW_GALLERY && mounted && <Gallery />}
 
       {/* CLIENTES */}
       <section className={styles.clientes} id="clientes">
