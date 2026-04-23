@@ -356,8 +356,19 @@ export default function Home() {
         <h2>Trabajamos con marcas increíbles</h2>
         <p>Empresas y personas que eligieron hacer sus momentos más especiales</p>
         <div className={styles.clientesGrid}>
-          {['MAKE', 'FITPASS', 'VOALE', 'CON CHANEL'].map(name => (
-            <div key={name} className={styles.clienteLogo}>{name}</div>
+          {[
+            { name: 'MAKE', filename: 'logo-make.svg' },
+            { name: 'FITPASS', filename: 'logo-fitpass.svg' },
+            { name: 'VOALE', filename: 'logo-voale.svg' },
+            { name: 'CON CHANEL', filename: 'logo-conchanel.svg' }
+          ].map(client => (
+            <div key={client.name} className={styles.clienteLogo}>
+              <img 
+                src={`/images/${client.filename}`} 
+                alt={client.name}
+                className={styles.clienteLogoImg}
+              />
+            </div>
           ))}
         </div>
       </section>

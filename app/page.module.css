@@ -471,6 +471,8 @@
 }
 
 /* CLIENTES */
+/* CLIENTES - ACTUALIZADO CON SVGs */
+/* CLIENTES - SIN CUADRO, SOLO SVGs */
 .clientes {
   padding: 80px 48px;
   background: #FAF7F2;
@@ -502,16 +504,82 @@
 .clienteLogo {
   width: 130px;
   height: 64px;
-  background: #f0ebe4;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 500;
-  color: #6a5a50;
-  letter-spacing: 1px;
-  border: 1px solid #e8e0d6;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.clienteLogo:hover {
+  transform: translateY(-6px) scale(1.05);
+}
+
+.clienteLogoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.6; /* Efecto de marca de agua - tono bajito */
+  transition: opacity 0.3s ease;
+  filter: grayscale(20%); /* Ligeramente desaturado para efecto watermark */
+}
+
+.clienteLogo:hover .clienteLogoImg {
+  opacity: 0.85; /* Al hover, sube un poco la opacidad */
+  filter: grayscale(0%); /* Al hover, color normal */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .clientes {
+    padding: 60px 20px;
+  }
+
+  .clientes h2 {
+    font-size: 28px;
+  }
+
+  .clientes p {
+    font-size: 14px;
+  }
+
+  .clientesGrid {
+    gap: 24px;
+  }
+
+  .clienteLogo {
+    width: 110px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clientes {
+    padding: 48px 16px;
+  }
+
+  .clientes h2 {
+    font-size: 24px;
+  }
+
+  .clientes p {
+    font-size: 13px;
+  }
+
+  .clientesGrid {
+    gap: 16px;
+  }
+
+  .clienteLogo {
+    width: 100px;
+    height: 50px;
+  }
+
+  .clienteLogoImg {
+    width: 85%;
+    height: 85%;
+  }
 }
 
 /* FOOTER */
