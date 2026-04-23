@@ -188,11 +188,9 @@ export default function Home() {
             <h2>✨ Especial Mamá ✨</h2>
             <p>10 de Mayo - Regalos perfectos para las mamás</p>
           </div>
-          
           <div className={styles.mayo10Grid}>
             {products
-              .filter(p => MAYO_10_CATEGORIES.includes(p.category?.name))
-              .slice(0, 6)
+              .filter(product => MAYO_10_CATEGORIES.includes(product.category?.name))
               .map(product => (
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.productImg}>
@@ -221,14 +219,12 @@ export default function Home() {
                     <p className={styles.productPriceSmall}>IVA incluido</p>
                   </div>
                   
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/producto/${product.id}`}
                     className={styles.productCardWhatsApp}
                   >
                     Envíame más info 💌
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -338,14 +334,12 @@ export default function Home() {
                     <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
                     <p className={styles.productPriceSmall}>IVA incluido</p>
                   </div>
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/producto/${product.id}`}
                     className={styles.productCardWhatsApp}
                   >
                     Envíame más info 💌
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
