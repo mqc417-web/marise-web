@@ -1,0 +1,226 @@
+/* CARRUSEL DE CLIENTES */
+
+.clientes {
+  padding: 80px 48px;
+  background: #FAF7F2;
+  text-align: center;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: #F4E1C8;
+  color: #7a4e2a;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.clientes h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: #2a1f1a;
+  margin: 8px 0;
+}
+
+.clientes p {
+  font-size: 15px;
+  color: #6a5a50;
+  margin-bottom: 48px;
+}
+
+/* CONTENEDOR DEL CARRUSEL */
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* GRID DE LOGOS */
+.clientesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+/* LOGO INDIVIDUAL */
+.clienteLogo {
+  aspect-ratio: 2 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.clienteLogo:hover {
+  transform: translateY(-6px) scale(1.05);
+}
+
+.clienteLogoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.6; /* Efecto watermark */
+  transition: opacity 0.3s ease;
+  filter: grayscale(20%);
+}
+
+.clienteLogo:hover .clienteLogoImg {
+  opacity: 0.85;
+  filter: grayscale(0%);
+}
+
+/* BOTONES DEL CARRUSEL */
+.carouselButton {
+  background: #3a2e2a;
+  color: #FFE499;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.carouselButton:hover {
+  background: #5a4e4a;
+  transform: scale(1.1);
+}
+
+.carouselButton:active {
+  transform: scale(0.95);
+}
+
+.carouselButton svg {
+  stroke: currentColor;
+}
+
+.prevButton {
+  order: -1; /* Botón anterior a la izquierda */
+}
+
+.nextButton {
+  order: 1; /* Botón siguiente a la derecha */
+}
+
+/* INDICADOR DE PAUSA */
+.pauseIndicator {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #9B6B4A;
+  font-weight: 500;
+  animation: fadeInOut 0.5s ease;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE - TABLET */
+@media (max-width: 768px) {
+  .clientes {
+    padding: 60px 20px;
+  }
+
+  .clientes h2 {
+    font-size: 28px;
+  }
+
+  .clientes p {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .carouselContainer {
+    gap: 12px;
+  }
+
+  .clientesGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 100%;
+    padding: 0 8px;
+  }
+
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .carouselButton svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* RESPONSIVE - MOBILE */
+@media (max-width: 480px) {
+  .clientes {
+    padding: 48px 16px;
+  }
+
+  .clientes h2 {
+    font-size: 24px;
+  }
+
+  .clientes p {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .carouselContainer {
+    gap: 8px;
+  }
+
+  .clientesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .carouselButton {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .carouselButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pauseIndicator {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}

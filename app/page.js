@@ -5,6 +5,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import Gallery from '@/app/components/gallery'
+import ClientesCarousel from '@/app/components/ClientesCarousel'
 
 // Importar configuración centralizada
 import {
@@ -351,7 +352,7 @@ export default function Home() {
       {SHOW_GALLERY && mounted && <Gallery />}
 
       {/* CLIENTES */}
-      <section className={styles.clientes} id="clientes">
+{/*       <section className={styles.clientes} id="clientes">
         <span className={styles.sectionTag}>✦ Han confiado en nosotros</span>
         <h2>Trabajamos con marcas increíbles</h2>
         <p>Empresas y personas que eligieron hacer sus momentos más especiales</p>
@@ -371,7 +372,8 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
+      {mounted && <ClientesCarousel />}
 
       {/* FOOTER / CONTACTO */}
       <footer className={styles.footer} id="contacto">
