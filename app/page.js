@@ -224,7 +224,8 @@ export default function Home() {
                     href={`/producto/${product.id}`}
                     className={styles.productCardWhatsApp}
                   >
-                    Envíame más info 💌
+                    {/* Envíame más info 💌 */}
+                    Detalles
                   </Link>
                 </div>
               </div>
@@ -339,7 +340,8 @@ export default function Home() {
                     href={`/producto/${product.id}`}
                     className={styles.productCardWhatsApp}
                   >
-                    Envíame más info 💌
+                    {/* Envíame más info 💌 */}
+                    Ver mas detalles
                   </Link>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import styles from '../producto.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
+import Head from 'next/head'
 
 import {
   WHATSAPP_NUMBER,
@@ -80,6 +81,11 @@ export default function ProductPage() {
     }).format(price)
   }
 
+  // Generar URL canónica del producto
+  const productUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}/producto/${productId}`
+    : `https://marise-web.vercel.app/producto/${productId}`
+
   if (loading) {
     return (
       <div className={styles.pageContainer}>
@@ -108,96 +114,123 @@ export default function ProductPage() {
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`
 
   return (
-    <div className={styles.pageContainer}>
-      {/* Mini Nav */}
-      <nav className={styles.miniNav}>
-        <Link href="/" className={styles.miniNavLogo}>
-          <LogoPath />
-        </Link>
-        <Link href="/#catalogo" className={styles.miniNavBackLink}>
-          ← Volver al catálogo
-        </Link>
-      </nav>
+    <>
+      {/* Open Graph Meta Tags para compartir */}
+      <head>
+        <title>{product.name} - Marise</title>
+        <meta name="description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
+        <meta property="og:image" content={product.image || 'https://marise-web.vercel.app/images/Logo-Marise-SVG-cafe.svg'} />
+        <meta property="og:url" content={productUrl} />
+        <meta property="og:site_name" content="Marise" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.name} />
+        <meta name="twitter:description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
+        <meta name="twitter:image" content={product.image || 'https://marise-web.vercel.app/images/Logo-Marise-SVG-cafe.svg'} />
+        
+        {/* WhatsApp */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+      </head>
 
-      {/* Contenedor principal */}
-      <section className={styles.productDetail}>
-        {/* Lado izquierdo: Imagen */}
-        <div className={styles.productImageSide}>
-          <div className={styles.productImageWrapper}>
-            {product.image ? (
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className={styles.productDetailImage}
+      <div className={styles.pageContainer}>
+        {/* Mini Nav */}
+        <nav className={styles.miniNav}>
+          <Link href="/" className={styles.miniNavLogo}>
+            <LogoPath />
+          </Link>
+          <Link href="/#catalogo" className={styles.miniNavBackLink}>
+            ← Volver al catálogo
+          </Link>
+        </nav>
+
+        {/* Contenedor principal */}
+        <section className={styles.productDetail}>
+          {/* Lado izquierdo: Imagen */}
+          <div className={styles.productImageSide}>
+            <div className={styles.productImageWrapper}>
+              {product.image ? (
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className={styles.productDetailImage}
+                />
+              ) : (
+                <div className={styles.productImagePlaceholder}>✦</div>
+              )}
+            </div>
+          </div>
+
+          {/* Lado derecho: Información */}
+          <div className={styles.productInfoSide}>
+            {/* Categoría */}
+            {product.category && (
+              <p className={styles.detailCategory}>
+                {product.category.name}
+              </p>
+            )}
+
+            {/* Nombre */}
+            <h1 className={styles.detailName}>
+              {product.name}
+              {product.variant && (
+                <span className={styles.detailVariant}>
+                  — {product.variant}
+                </span>
+              )}
+            </h1>
+
+            {/* Descripción */}
+            {product.description && (
+              <div 
+                className={styles.detailDescription}
+                dangerouslySetInnerHTML={{ __html: product.description }}
               />
-            ) : (
-              <div className={styles.productImagePlaceholder}>✦</div>
             )}
-          </div>
-        </div>
 
-        {/* Lado derecho: Información */}
-        <div className={styles.productInfoSide}>
-          {/* Categoría */}
-          {product.category && (
-            <p className={styles.detailCategory}>
-              {product.category.name}
-            </p>
-          )}
+            {/* Divider */}
+            <div className={styles.detailDivider}></div>
 
-          {/* Nombre */}
-          <h1 className={styles.detailName}>
-            {product.name}
-            {product.variant && (
-              <span className={styles.detailVariant}>
-                — {product.variant}
+            {/* Precio */}
+            <div className={styles.detailPriceContainer}>
+              <span className={styles.detailPrice}>
+                {formatPrice(product.priceWithTax)}
               </span>
-            )}
-          </h1>
+              <span className={styles.detailPriceNote}>IVA incluido</span>
+            </div>
 
-          {/* Descripción */}
-          {product.description && (
-            <div 
-              className={styles.detailDescription}
-              dangerouslySetInnerHTML={{ __html: product.description }}
-            />
-          )}
+            {/* Botones */}
+            <div className={styles.detailActions}>
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnWhatsApp}
+              >
+                <WhatsAppIcon size={18} />
+                Envíame más info 💌
+              </a>
+              <Link href="/#catalogo" className={styles.btnBackSecondary}>
+                ← Volver al catálogo
+              </Link>
+            </div>
 
-          {/* Divider */}
-          <div className={styles.detailDivider}></div>
-
-          {/* Precio */}
-          <div className={styles.detailPriceContainer}>
-            <span className={styles.detailPrice}>
-              {formatPrice(product.priceWithTax)}
-            </span>
-            <span className={styles.detailPriceNote}>IVA incluido</span>
+            {/* Información adicional */}
+            <div className={styles.detailInfo}>
+              <p className={styles.detailInfoText}>
+                ¿Tienes alguna pregunta sobre este producto? Contáctanos por WhatsApp y te ayudamos a personalizarlo exactamente como lo imaginas.
+              </p>
+            </div>
           </div>
-
-          {/* Botones */}
-          <div className={styles.detailActions}>
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnWhatsApp}
-            >
-              <WhatsAppIcon size={18} />
-              Envíame más info 💌
-            </a>
-            <Link href="/#catalogo" className={styles.btnBackSecondary}>
-              ← Volver al catálogo
-            </Link>
-          </div>
-
-          {/* Información adicional */}
-          <div className={styles.detailInfo}>
-            <p className={styles.detailInfoText}>
-              ¿Tienes alguna pregunta sobre este producto? Contáctanos por WhatsApp y te ayudamos a personalizarlo exactamente como lo imaginas.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   )
 }
