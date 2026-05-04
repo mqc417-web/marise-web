@@ -225,7 +225,7 @@ export default function Home() {
                     className={styles.productCardWhatsApp}
                   >
                     {/* Envíame más info 💌 */}
-                    Detalles
+                    Ver más detalles
                   </Link>
                 </div>
               </div>
@@ -341,7 +341,7 @@ export default function Home() {
                     className={styles.productCardWhatsApp}
                   >
                     {/* Envíame más info 💌 */}
-                    Ver mas detalles
+                    Ver más detalles
                   </Link>
                 </div>
               </div>
