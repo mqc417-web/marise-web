@@ -1,236 +1,86 @@
-'use client'
+import { Metadata } from 'next'
+import { use } from 'react'
 
-import { useState, useEffect } from 'react'
-import styles from '../producto.module.css'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useParams, useRouter } from 'next/navigation'
-import Head from 'next/head'
-
-import {
-  WHATSAPP_NUMBER,
-} from '@/app/config.js'
-
-// WhatsApp SVG
-const WhatsAppIcon = ({size = 20}) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-  </svg>
-)
-
-// Logo SVG
-const LogoPath = () => (
-  <Image 
-    src="/images/Logo-Marise-SVG-cafe.svg" 
-    alt="Logo Marise" 
-    width={400}
-    height={120} 
-    style={{ 
-      height: '60px', 
-      width: 'auto',
-      maxWidth: '90vw'
-    }}
-    priority
-  />
-);
-
-export default function ProductPage() {
-  const params = useParams()
-  const router = useRouter()
-  const productId = params.id
-
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  // Cargar producto específico
-  useEffect(() => {
-    async function loadProduct() {
-      try {
-        const res = await fetch('/api/products')
-        const data = await res.json()
-        
-        if (data.error) throw new Error(data.error)
-        
-        // Encontrar el producto por ID
-        const found = data.products.find(p => p.id.toString() === productId)
-        
-        if (!found) {
-          throw new Error('Producto no encontrado')
-        }
-        
-        setProduct(found)
-      } catch (err) {
-        console.error(err)
-        setError(err.message || 'No se pudo cargar el producto.')
-      } finally {
-        setLoading(false)
-      }
-    }
+// ============================================
+// FUNCIÓN PARA OBTENER EL PRODUCTO EN SERVER
+// ============================================
+async function getProduct(id) {
+  try {
+    const res = await fetch('https://marise-web.vercel.app/api/products', {
+      next: { revalidate: 3600 } // Cache por 1 hora
+    })
+    const data = await res.json()
     
-    if (productId) {
-      loadProduct()
+    if (data.error) throw new Error(data.error)
+    
+    const product = data.products.find(p => p.id.toString() === id)
+    return product || null
+  } catch (err) {
+    console.error('Error fetching product:', err)
+    return null
+  }
+}
+
+// ============================================
+// GENERAR METADATA DINÁMICAMENTE (SERVER-SIDE)
+// ============================================
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params
+  const product = await getProduct(resolvedParams.id)
+  
+  if (!product) {
+    return {
+      title: 'Producto no encontrado',
+      description: 'El producto que buscas no existe'
     }
-  }, [productId])
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'MXN',
-      minimumFractionDigits: 0,
-    }).format(price)
   }
 
-  // Generar URL canónica del producto
-  const productUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}/producto/${productId}`
-    : `https://marise-web.vercel.app/producto/${productId}`
+  const cleanDescription = product.description
+    ?.replace(/<[^>]*>/g, '')
+    .substring(0, 160) || 'Descubre este producto personalizado de Marise'
 
-  if (loading) {
-    return (
-      <div className={styles.pageContainer}>
-        <div className={styles.loadingState}>
-          <div className={styles.spinner}></div>
-          <p>Cargando producto...</p>
-        </div>
-      </div>
-    )
+  const productUrl = `https://marise-web.vercel.app/producto/${resolvedParams.id}`
+  const productImage = product.image || 'https://marise-web.vercel.app/images/ThumbnailMarise.png'
+
+  return {
+    title: `${product.name} - Marise`,
+    description: cleanDescription,
+    metadataBase: new URL('https://marise-web.vercel.app'),
+    openGraph: {
+      type: 'website',
+      title: product.name,
+      description: cleanDescription,
+      images: [
+        {
+          url: productImage,
+          width: 1200,
+          height: 630,
+          alt: product.name,
+          type: 'image/jpeg'
+        }
+      ],
+      url: productUrl,
+      siteName: 'Marise'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.name,
+      description: cleanDescription,
+      images: [productImage]
+    }
   }
+}
 
-  if (error || !product) {
-    return (
-      <div className={styles.pageContainer}>
-        <div className={styles.errorState}>
-          <p>❌ {error || 'Producto no encontrado'}</p>
-          <Link href="/#catalogo" className={styles.btnBack}>
-            ← Volver al catálogo
-          </Link>
-        </div>
-      </div>
-    )
-  }
+// ============================================
+// IMPORTAR EL COMPONENTE CLIENTE
+// ============================================
+import ProductPageClient from '../ProductPageClient'
 
-  const waMessage = `Hola%20Marise!%20Me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}${product.variant ? `%20-%20${encodeURIComponent(product.variant)}` : ''}`
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`
-
-  return (
-    <>
-      {/* Open Graph Meta Tags para compartir */}
-      <head>
-        <title>{product.name} - Marise</title>
-        <meta name="description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={product.name} />
-        <meta property="og:description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
-        <meta property="og:image" content={product.image || 'https://marise-web.vercel.app/images/Logo-Marise-SVG-cafe.svg'} />
-        <meta property="og:url" content={productUrl} />
-        <meta property="og:site_name" content="Marise" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.name} />
-        <meta name="twitter:description" content={product.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Descubre este producto personalizado de Marise'} />
-        <meta name="twitter:image" content={product.image || 'https://marise-web.vercel.app/images/Logo-Marise-SVG-cafe.svg'} />
-        
-        {/* WhatsApp */}
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/jpeg" />
-      </head>
-
-      <div className={styles.pageContainer}>
-        {/* Mini Nav */}
-        <nav className={styles.miniNav}>
-          <Link href="/" className={styles.miniNavLogo}>
-            <LogoPath />
-          </Link>
-          <Link href="/#catalogo" className={styles.miniNavBackLink}>
-            ← Volver al catálogo
-          </Link>
-        </nav>
-
-        {/* Contenedor principal */}
-        <section className={styles.productDetail}>
-          {/* Lado izquierdo: Imagen */}
-          <div className={styles.productImageSide}>
-            <div className={styles.productImageWrapper}>
-              {product.image ? (
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className={styles.productDetailImage}
-                />
-              ) : (
-                <div className={styles.productImagePlaceholder}>✦</div>
-              )}
-            </div>
-          </div>
-
-          {/* Lado derecho: Información */}
-          <div className={styles.productInfoSide}>
-            {/* Categoría */}
-            {product.category && (
-              <p className={styles.detailCategory}>
-                {product.category.name}
-              </p>
-            )}
-
-            {/* Nombre */}
-            <h1 className={styles.detailName}>
-              {product.name}
-              {product.variant && (
-                <span className={styles.detailVariant}>
-                  — {product.variant}
-                </span>
-              )}
-            </h1>
-
-            {/* Descripción */}
-            {product.description && (
-              <div 
-                className={styles.detailDescription}
-                dangerouslySetInnerHTML={{ __html: product.description }}
-              />
-            )}
-
-            {/* Divider */}
-            <div className={styles.detailDivider}></div>
-
-            {/* Precio */}
-            <div className={styles.detailPriceContainer}>
-              <span className={styles.detailPrice}>
-                {formatPrice(product.priceWithTax)}
-              </span>
-              <span className={styles.detailPriceNote}>IVA incluido</span>
-            </div>
-
-            {/* Botones */}
-            <div className={styles.detailActions}>
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.btnWhatsApp}
-              >
-                <WhatsAppIcon size={18} />
-                Envíame más info 💌
-              </a>
-              <Link href="/#catalogo" className={styles.btnBackSecondary}>
-                ← Volver al catálogo
-              </Link>
-            </div>
-
-            {/* Información adicional */}
-            <div className={styles.detailInfo}>
-              <p className={styles.detailInfoText}>
-                ¿Tienes alguna pregunta sobre este producto? Contáctanos por WhatsApp y te ayudamos a personalizarlo exactamente como lo imaginas.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
-  )
+// ============================================
+// PÁGINA (RENDERIZA EL COMPONENTE CLIENTE)
+// ============================================
+export default function ProductPage({ params }) {
+  // Usar React.use() para desempacar la Promise de params
+  const resolvedParams = use(params)
+  return <ProductPageClient productId={resolvedParams.id} />
 }
