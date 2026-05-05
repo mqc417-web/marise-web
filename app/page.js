@@ -72,6 +72,19 @@ export default function Home() {
     setMounted(true)
   }, [])
 
+  // ← AGREGA EL NUEVO useEffect AQUÍ
+  useEffect(() => {
+    if (mounted) {
+      const hash = window.location.hash
+      if (hash) {
+        const element = document.querySelector(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }, [mounted])
+
   // Cargar productos desde la API
   useEffect(() => {
     async function loadProducts() {
