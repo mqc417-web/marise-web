@@ -184,7 +184,7 @@ export default function Home() {
 
       {/* SECCIÓN ESPECIAL: MAYO 10 */}
       {mounted && SHOW_MAYO_10 && products.length > 0 && (
-        <section className={styles.mayo10Section}>
+        <section className={styles.mayo10Section} id="mayo10">
           <div className={styles.mayo10Header}>
             <h2>✨ Especial Mamá ✨</h2>
             <p>10 de Mayo - Regalos perfectos para las mamás</p>
