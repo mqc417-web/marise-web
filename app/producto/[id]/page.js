@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { use } from 'react'
 
+export const revalidate = 0
+
 // ============================================
 // FUNCIÓN PARA OBTENER EL PRODUCTO EN SERVER
 // ============================================
