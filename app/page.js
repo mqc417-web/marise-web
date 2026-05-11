@@ -10,8 +10,8 @@ import ClientesCarousel from '@/app/components/ClientesCarousel'
 // Importar configuración centralizada
 import {
   CATALOG_CATEGORIES,
-  SHOW_MAYO_10,
-  MAYO_10_CATEGORIES,
+  SHOW_SEDE_26,
+  SEDE_26_CATEGORIES,
   SHOW_GALLERY,
   WHATSAPP_NUMBER,
   DEFAULT_WHATSAPP_MESSAGE,
@@ -113,10 +113,10 @@ export default function Home() {
     let result = products
 
     // Filtrar por categoría del catálogo
-    // Si CATALOG_CATEGORIES está vacío, mostrar todas excepto las del mayo 10
+    // Si CATALOG_CATEGORIES está vacío, mostrar todas excepto las de Sede 26
     if (CATALOG_CATEGORIES.length === 0) {
-      // Mostrar todas menos las de Mayo 10
-      result = result.filter(p => !MAYO_10_CATEGORIES.includes(p.category?.name))
+      // Mostrar todas menos las de Sede 26
+      result = result.filter(p => !SEDE_26_CATEGORIES.includes(p.category?.name))
     } else {
       // Mostrar solo las categorías especificadas
       result = result.filter(p => CATALOG_CATEGORIES.includes(p.category?.name))
@@ -148,7 +148,7 @@ export default function Home() {
 
   // Obtener categorías para mostrar en filtros
   const availableCategories = CATALOG_CATEGORIES.length === 0
-    ? categories.filter(cat => !MAYO_10_CATEGORIES.includes(cat))
+    ? categories.filter(cat => !SEDE_26_CATEGORIES.includes(cat))
     : categories.filter(cat => CATALOG_CATEGORIES.includes(cat))
 
   return (
@@ -195,16 +195,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN ESPECIAL: MAYO 10 */}
-      {mounted && SHOW_MAYO_10 && products.length > 0 && (
-        <section className={styles.mayo10Section} id="mayo10">
-          <div className={styles.mayo10Header}>
-            <h2>✨ Especial Mamá ✨</h2>
-            <p>10 de Mayo - Regalos perfectos para las mamás</p>
+      {/* SECCIÓN ESPECIAL: SEDE 26 */}
+      {mounted && SHOW_SEDE_26 && products.length > 0 && (
+        <section className={styles.sede26Section} id="sede26">
+          <div className={styles.sede26Header}>
+            <h2>⚽ Especial Sede 26 ⚽</h2>
+            <p>Productos personalizados para el Mundial 2026</p>
           </div>
-          <div className={styles.mayo10Grid}>
+          <div className={styles.sede26Grid}>
             {products
-              .filter(product => MAYO_10_CATEGORIES.includes(product.category?.name))
+              .filter(product => SEDE_26_CATEGORIES.includes(product.category?.name))
               .map(product => (
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.productImg}>

@@ -14,18 +14,20 @@ export const CATALOG_CATEGORIES = [
   'Caketopper',
   'Papelería',
   'Empaques y Cajas',
-  'Platos'
+  'Platos',
+  'álbumes, cuadernos y agendas',
+  'Fotos y Cuadros'
 ];
 
 // ============================================
-// 🎂 SECCIÓN ESPECIAL - 10 DE MAYO
+// ⚽ SECCIÓN ESPECIAL - SEDE 26
 // ============================================
-// Mostrar u ocultar la sección especial del 10 de mayo
-export const SHOW_MAYO_10 = true;
+// Mostrar u ocultar la sección especial de Sede 26 (Mundial 2026)
+export const SHOW_SEDE_26 = true;
 
-// Categorías que se mostrarán SOLO en la sección del 10 de Mayo
+// Categorías que se mostrarán SOLO en la sección de Sede 26
 // Estas NO aparecerán en el catálogo general
-export const MAYO_10_CATEGORIES = ['Día de las Madres'];
+export const SEDE_26_CATEGORIES = ['Mundial'];
 
 // ============================================
 // 🖼️ GALERÍA DE IMÁGENES
