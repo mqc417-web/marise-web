@@ -123,10 +123,14 @@ export default function ProductPageClient({ productId }) {
         <div className={styles.productImageSide}>
           <div className={styles.productImageWrapper}>
             {product.image ? (
-              <img 
+              <Image 
                 src={product.image} 
                 alt={product.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.productDetailImage}
+                priority
+                quality={85}
               />
             ) : (
               <div className={styles.productImagePlaceholder}>✦</div>

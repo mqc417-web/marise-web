@@ -27,7 +27,7 @@ export const SHOW_SEDE_26 = true;
 
 // Categorías que se mostrarán SOLO en la sección de Sede 26
 // Estas NO aparecerán en el catálogo general
-export const SEDE_26_CATEGORIES = ['Mundial'];
+export const SEDE_26_CATEGORIES = ['Sede 26'];
 
 // ============================================
 // 🖼️ GALERÍA DE IMÁGENES

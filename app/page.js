@@ -199,8 +199,20 @@ export default function Home() {
       {mounted && SHOW_SEDE_26 && products.length > 0 && (
         <section className={styles.sede26Section} id="sede26">
           <div className={styles.sede26Header}>
-            <h2>⚽ Especial Sede 26 ⚽</h2>
-            <p>Productos personalizados para el Mundial 2026</p>
+            <Image
+              src="/images/sede26_largo.png"
+              alt="Especial Sede 26"
+              width={800}
+              height={150}
+              style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '400px'
+              }}
+              priority
+              quality={90}
+              />
+              <p>Productos personalizados para el la sede futbolera 2026</p>
           </div>
           <div className={styles.sede26Grid}>
             {products
@@ -209,7 +221,15 @@ export default function Home() {
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.productImg}>
                   {product.image ? (
-                    <img src={product.image} alt={product.name} />
+                    <Image 
+                      src={product.image} 
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      className={styles.productDetailImage}
+                      quality={80}
+                      loading="lazy"
+                    />
                   ) : (
                     <div className={styles.productImgPlaceholder}>✦</div>
                   )}
@@ -326,7 +346,15 @@ export default function Home() {
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.productImg}>
                   {product.image ? (
-                    <img src={product.image} alt={product.name} />
+                    <Image 
+                      src={product.image} 
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      className={styles.productDetailImage}
+                      quality={80}
+                      loading="lazy"
+                    />
                   ) : (
                     <div className={styles.productImgPlaceholder}>✦</div>
                   )}
