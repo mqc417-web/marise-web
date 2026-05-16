@@ -376,9 +376,11 @@
   justify-content: center;
   width: 100%;
   position: relative;
+  height: 100%;
 }
 
-.productImg img {
+.productImg img,
+.productImg > div {
   width: 100%;
   height: 100%;
   object-fit: cover;

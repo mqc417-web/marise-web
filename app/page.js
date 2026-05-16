@@ -48,6 +48,74 @@ const MonogramSVG = () => (
   />
 );
 
+// Skeleton loader para Sede 26
+const Sede26Skeleton = () => (
+  <div className={styles.sede26Section} style={{ opacity: 0.6 }}>
+    <div className={styles.sede26Header}>
+      <div style={{
+        height: '60px',
+        background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+        backgroundSize: '200% 100%',
+        animation: 'loading 1.5s infinite',
+        borderRadius: '8px',
+        marginBottom: '16px'
+      }}></div>
+      <div style={{
+        height: '20px',
+        background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+        backgroundSize: '200% 100%',
+        animation: 'loading 1.5s infinite',
+        borderRadius: '4px',
+        maxWidth: '400px',
+        margin: '0 auto'
+      }}></div>
+    </div>
+    <div className={styles.sede26Grid}>
+      {[1, 2, 3].map(i => (
+        <div key={i} className={styles.productCard} style={{ opacity: 0.5 }}>
+          <div className={styles.productImg} style={{
+            background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+            backgroundSize: '200% 100%',
+            animation: 'loading 1.5s infinite',
+            minHeight: '300px'
+          }}></div>
+          <div className={styles.productInfo}>
+            <div style={{
+              height: '12px',
+              background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+              backgroundSize: '200% 100%',
+              animation: 'loading 1.5s infinite',
+              borderRadius: '4px',
+              marginBottom: '8px'
+            }}></div>
+            <div style={{
+              height: '16px',
+              background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+              backgroundSize: '200% 100%',
+              animation: 'loading 1.5s infinite',
+              borderRadius: '4px',
+              marginBottom: '12px'
+            }}></div>
+            <div style={{
+              height: '14px',
+              background: 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)',
+              backgroundSize: '200% 100%',
+              animation: 'loading 1.5s infinite',
+              borderRadius: '4px'
+            }}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <style>{`
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    `}</style>
+  </div>
+)
+
 // WhatsApp SVG
 const WhatsAppIcon = ({size = 20}) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -64,6 +132,7 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState('Todos')
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
+  const [sede26Loading, setSede26Loading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -98,9 +167,13 @@ export default function Home() {
         // Extraer categorías únicas
         const allCategories = [...new Set(data.products.map(p => p.category?.name).filter(Boolean))]
         setCategories(allCategories)
+        
+        // Marcar Sede 26 como cargada
+        setSede26Loading(false)
       } catch (err) {
         console.error(err)
         setError('No se pudieron cargar los productos.')
+        setSede26Loading(false)
       } finally {
         setLoading(false)
       }
@@ -196,75 +269,81 @@ export default function Home() {
       </section>
 
       {/* SECCIÓN ESPECIAL: SEDE 26 */}
-      {mounted && SHOW_SEDE_26 && products.length > 0 && (
-        <section className={styles.sede26Section} id="sede26">
-          <div className={styles.sede26Header}>
-            <Image
-              src="/images/sede26_largo.png"
-              alt="Especial Sede 26"
-              width={800}
-              height={150}
-              style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxWidth: '400px'
-              }}
-              priority
-              quality={90}
-              />
-              <p>Productos personalizados para el la sede futbolera 2026</p>
-          </div>
-          <div className={styles.sede26Grid}>
-            {products
-              .filter(product => SEDE_26_CATEGORIES.includes(product.category?.name))
-              .map(product => (
-              <div key={product.id} className={styles.productCard}>
-                <div className={styles.productImg}>
-                  {product.image ? (
-                    <Image 
-                      src={product.image} 
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                      className={styles.productDetailImage}
-                      quality={80}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className={styles.productImgPlaceholder}>✦</div>
-                  )}
-                </div>
-                <div className={styles.productInfo}>
-                  {product.category && (
-                    <p className={styles.productCategory}>{product.category.name}</p>
-                  )}
-                  <p className={styles.productName}>
-                    {product.name}
-                    {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
-                  </p>
-                  {product.description && (
-                    <div 
-                      className={styles.productDesc}
-                      dangerouslySetInnerHTML={{ __html: product.description }}
-                    />
-                  )}
-                  <div className={styles.productPriceContainer}>
-                    <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
-                    <p className={styles.productPriceSmall}>IVA incluido</p>
-                  </div>
-                  
-                  <Link
-                    href={`/producto/${product.id}`}
-                    className={styles.productCardWhatsApp}
-                  >
-                    {/* Envíame más info 💌 */}
-                    Ver más detalles
-                  </Link>
-                </div>
+      {mounted && SHOW_SEDE_26 && (
+        <>
+          {sede26Loading ? (
+            <Sede26Skeleton />
+          ) : products.length > 0 ? (
+            <section className={styles.sede26Section} id="sede26">
+              <div className={styles.sede26Header}>
+                <Image
+                  src="/images/sede26_largo.png"
+                  alt="Especial Sede 26"
+                  width={800}
+                  height={150}
+                  style={{
+                      width: '100%',
+                      height: 'auto',
+                      maxWidth: '400px'
+                  }}
+                  priority
+                  quality={90}
+                  />
+                  <p>Productos personalizados para el la sede futbolera 2026</p>
               </div>
-            ))}
-          </div>
-        </section>
+              <div className={styles.sede26Grid}>
+                {products
+                  .filter(product => SEDE_26_CATEGORIES.includes(product.category?.name))
+                  .map(product => (
+                  <div key={product.id} className={styles.productCard}>
+                    <div className={styles.productImg}>
+                      {product.image ? (
+                        <Image 
+                          src={product.image} 
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                          className={styles.productDetailImage}
+                          quality={80}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className={styles.productImgPlaceholder}>✦</div>
+                      )}
+                    </div>
+                    <div className={styles.productInfo}>
+                      {product.category && (
+                        <p className={styles.productCategory}>{product.category.name}</p>
+                      )}
+                      <p className={styles.productName}>
+                        {product.name}
+                        {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
+                      </p>
+                      {product.description && (
+                        <div 
+                          className={styles.productDesc}
+                          dangerouslySetInnerHTML={{ __html: product.description }}
+                        />
+                      )}
+                      <div className={styles.productPriceContainer}>
+                        <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
+                        <p className={styles.productPriceSmall}>IVA incluido</p>
+                      </div>
+                      
+                      <Link
+                        href={`/producto/${product.id}`}
+                        className={styles.productCardWhatsApp}
+                      >
+                        {/* Envíame más info 💌 */}
+                        Ver más detalles
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </>
       )}
 
       {/* SOBRE NOSOTROS */}

@@ -143,6 +143,11 @@ export async function GET() {
         variant = attrNames.join(', ')
       }
 
+      // ✅ CAMBIO CLAVE: Devolver URL de Odoo en lugar de base64
+      const imageUrl = p.image_1920 
+        ? `https://marisecraft.odoo.com/web/image/product.product/${p.id}/image_1920`
+        : null
+
       return {
         id: p.id,
         name: templateName.replace(/^\[\d+\]\s*/, '').trim(),
@@ -151,7 +156,7 @@ export async function GET() {
         description: p.description_ecommerce || '',
         price: basePrice,
         priceWithTax: Math.round(priceWithTax * 100) / 100,
-        image: p.image_1920 ? `data:image/png;base64,${p.image_1920}` : null,
+        image: imageUrl,
         category: p.categ_id ? { id: p.categ_id[0], name: p.categ_id[1] } : null,
       }
     })
