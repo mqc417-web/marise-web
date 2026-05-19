@@ -12,6 +12,7 @@ import {
   CATALOG_CATEGORIES,
   SHOW_SEDE_26,
   SEDE_26_CATEGORIES,
+  SEDE_26_EXCLUSIVE_VARIANTS,
   SHOW_GALLERY,
   WHATSAPP_NUMBER,
   DEFAULT_WHATSAPP_MESSAGE,
@@ -195,6 +196,12 @@ export default function Home() {
       result = result.filter(p => CATALOG_CATEGORIES.includes(p.category?.name))
     }
 
+    // EXCLUIR variantes que son exclusivas de Sede 26
+    result = result.filter(product => {
+      const exclusiveVariants = SEDE_26_EXCLUSIVE_VARIANTS[product.name] || []
+      return !exclusiveVariants.includes(product.variant)
+    })
+
     // Filtrar por categoría activa (si no es "Todos")
     if (activeCategory !== 'Todos') {
       result = result.filter(p => p.category?.name === activeCategory)
@@ -293,7 +300,13 @@ export default function Home() {
               </div>
               <div className={styles.sede26Grid}>
                 {products
-                  .filter(product => SEDE_26_CATEGORIES.includes(product.category?.name))
+                  .filter(product => {
+                    // Mostrar si está en categoría Sede 26 O si es una variante exclusiva de Sede 26
+                    const isInSede26Category = SEDE_26_CATEGORIES.includes(product.category?.name)
+                    const exclusiveVariants = SEDE_26_EXCLUSIVE_VARIANTS[product.name] || []
+                    const isExclusiveVariant = exclusiveVariants.includes(product.variant)
+                    return isInSede26Category || isExclusiveVariant
+                  })
                   .map(product => (
                   <div key={product.id} className={styles.productCard}>
                     <div className={styles.productImg}>

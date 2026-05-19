@@ -29,6 +29,13 @@ export const SHOW_SEDE_26 = true;
 // Estas NO aparecerán en el catálogo general
 export const SEDE_26_CATEGORIES = ['Sede 26'];
 
+// Variantes específicas que SOLO aparecen en Sede 26
+// Formato: { 'Nombre del producto': ['Nombre de la variante'] }
+// Si una variante está aquí, SOLO se muestra en Sede 26, NO en el catálogo normal
+export const SEDE_26_EXCLUSIVE_VARIANTS = {
+  'Velas de formas': ['Futbol']
+};
+
 // ============================================
 // 🖼️ GALERÍA DE IMÁGENES
 // ============================================
