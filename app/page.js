@@ -10,9 +10,9 @@ import ClientesCarousel from '@/app/components/ClientesCarousel'
 // Importar configuración centralizada
 import {
   CATALOG_CATEGORIES,
-  SHOW_SEDE_26,
-  SEDE_26_CATEGORIES,
-  SEDE_26_EXCLUSIVE_VARIANTS,
+  SPECIAL_SECTIONS,
+  ALL_SPECIAL_CATEGORIES,
+  ALL_EXCLUSIVE_VARIANTS,
   SHOW_GALLERY,
   WHATSAPP_NUMBER,
   DEFAULT_WHATSAPP_MESSAGE,
@@ -49,9 +49,9 @@ const MonogramSVG = () => (
   />
 );
 
-// Skeleton loader para Sede 26
-const Sede26Skeleton = () => (
-  <div className={styles.sede26Section} style={{ opacity: 0.6 }}>
+// Skeleton loader para secciones especiales
+const SpecialSectionSkeleton = () => (
+  <div style={{ opacity: 0.6 }}>
     <div className={styles.sede26Header}>
       <div style={{
         height: '60px',
@@ -126,6 +126,86 @@ const WhatsAppIcon = ({size = 20}) => (
 
 const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${DEFAULT_WHATSAPP_MESSAGE}`
 
+// Componente reutilizable para Secciones Especiales
+function SpecialSection({ section, products, loading, formatPrice }) {
+  return (
+    <section 
+      className={styles.sede26Section} 
+      id={section.id}
+      style={{ backgroundColor: section.backgroundColor }}
+    >
+      {loading ? (
+        <SpecialSectionSkeleton />
+      ) : products.length > 0 ? (
+        <>
+          <div className={styles.sede26Header}>
+            <Image
+              src={section.icon}
+              alt={section.name}
+              width={800}
+              height={150}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: '400px'
+              }}
+              priority
+              quality={90}
+            />
+            <p>{section.name}</p>
+          </div>
+          <div className={styles.sede26Grid}>
+            {products.map(product => (
+              <div key={product.id} className={styles.productCard}>
+                <div className={styles.productImg}>
+                  {product.image ? (
+                    <Image 
+                      src={product.image} 
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      className={styles.productDetailImage}
+                      quality={80}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className={styles.productImgPlaceholder}>✦</div>
+                  )}
+                </div>
+                <div className={styles.productInfo}>
+                  {product.category && (
+                    <p className={styles.productCategory}>{product.category.name}</p>
+                  )}
+                  <p className={styles.productName}>
+                    {product.name}
+                    {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
+                  </p>
+                  {product.description && (
+                    <div 
+                      className={styles.productDesc}
+                      dangerouslySetInnerHTML={{ __html: product.description }}
+                    />
+                  )}
+                  <div className={styles.productPriceContainer}>
+                    <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
+                    <p className={styles.productPriceSmall}>IVA incluido</p>
+                  </div>
+                  <Link
+                    href={`/producto/${product.id}`}
+                    className={styles.productCardWhatsApp}
+                  >
+                    Ver más detalles
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+    </section>
+  )
+}
+
 export default function Home() {
   const [products, setProducts] = useState([])
   const [filtered, setFiltered] = useState([])
@@ -133,7 +213,7 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState('Todos')
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
-  const [sede26Loading, setSede26Loading] = useState(true)
+  const [specialLoading, setSpecialLoading] = useState(true)
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -142,7 +222,6 @@ export default function Home() {
     setMounted(true)
   }, [])
 
-  // ← AGREGA EL NUEVO useEffect AQUÍ
   useEffect(() => {
     if (mounted) {
       const hash = window.location.hash
@@ -165,16 +244,20 @@ export default function Home() {
         setProducts(data.products)
         setFiltered(data.products)
         
-        // Extraer categorías únicas
-        const allCategories = [...new Set(data.products.map(p => p.category?.name).filter(Boolean))]
+        // Extraer categorías únicas (solo del catálogo general)
+        const allCategories = [...new Set(
+          data.products
+            .filter(p => !ALL_SPECIAL_CATEGORIES.includes(p.category?.name))
+            .map(p => p.category?.name)
+            .filter(Boolean)
+        )]
         setCategories(allCategories)
         
-        // Marcar Sede 26 como cargada
-        setSede26Loading(false)
+        setSpecialLoading(false)
       } catch (err) {
         console.error(err)
         setError('No se pudieron cargar los productos.')
-        setSede26Loading(false)
+        setSpecialLoading(false)
       } finally {
         setLoading(false)
       }
@@ -182,32 +265,28 @@ export default function Home() {
     loadProducts()
   }, [])
 
-  // Filtrar productos por categoría y búsqueda
+  // Filtrar productos por categoría y búsqueda (SOLO del catálogo general)
   useEffect(() => {
     let result = products
 
-    // Filtrar por categoría del catálogo
-    // Si CATALOG_CATEGORIES está vacío, mostrar todas excepto las de Sede 26
-    if (CATALOG_CATEGORIES.length === 0) {
-      // Mostrar todas menos las de Sede 26
-      result = result.filter(p => !SEDE_26_CATEGORIES.includes(p.category?.name))
-    } else {
-      // Mostrar solo las categorías especificadas
-      result = result.filter(p => CATALOG_CATEGORIES.includes(p.category?.name))
-    }
+    // 1. EXCLUIR productos de secciones especiales
+    result = result.filter(p => !ALL_SPECIAL_CATEGORIES.includes(p.category?.name))
 
-    // EXCLUIR variantes que son exclusivas de Sede 26
+    // 2. EXCLUIR variantes exclusivas de secciones especiales
     result = result.filter(product => {
-      const exclusiveVariants = SEDE_26_EXCLUSIVE_VARIANTS[product.name] || []
+      const exclusiveVariants = ALL_EXCLUSIVE_VARIANTS[product.name] || []
       return !exclusiveVariants.includes(product.variant)
     })
 
-    // Filtrar por categoría activa (si no es "Todos")
+    // 3. SOLO MOSTRAR categorías del catálogo permitido
+    result = result.filter(p => CATALOG_CATEGORIES.includes(p.category?.name))
+
+    // 4. Filtrar por categoría activa (si no es "Todos")
     if (activeCategory !== 'Todos') {
       result = result.filter(p => p.category?.name === activeCategory)
     }
 
-    // Filtrar por búsqueda
+    // 5. Filtrar por búsqueda
     if (search.trim()) {
       result = result.filter(p =>
         p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -226,10 +305,20 @@ export default function Home() {
     }).format(price)
   }
 
-  // Obtener categorías para mostrar en filtros
-  const availableCategories = CATALOG_CATEGORIES.length === 0
-    ? categories.filter(cat => !SEDE_26_CATEGORIES.includes(cat))
-    : categories.filter(cat => CATALOG_CATEGORIES.includes(cat))
+  // Obtener categorías disponibles (SOLO las permitidas en CATALOG_CATEGORIES)
+  const availableCategories = categories.filter(cat => CATALOG_CATEGORIES.includes(cat))
+
+  // Obtener productos para una sección especial
+  const getSpecialSectionProducts = (section) => {
+    return products.filter(product => {
+      const isInSection = section.categories.includes(product.category?.name)
+      const exclusiveVariants = section.exclusive_variants?.[product.name] || []
+      const isExclusiveVariant = exclusiveVariants.includes(product.variant)
+      return isInSection || isExclusiveVariant
+    })
+  }
+
+  const activeSpecialSections = SPECIAL_SECTIONS.filter(s => s.show)
 
   return (
     <main>
@@ -275,87 +364,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN ESPECIAL: SEDE 26 */}
-      {mounted && SHOW_SEDE_26 && (
+      {/* SECCIONES ESPECIALES (Sede 26, Grad 2026, Día del Padre) */}
+      {mounted && (
         <>
-          {sede26Loading ? (
-            <Sede26Skeleton />
-          ) : products.length > 0 ? (
-            <section className={styles.sede26Section} id="sede26">
-              <div className={styles.sede26Header}>
-                <Image
-                  src="/images/sede26_largo.png"
-                  alt="Especial Sede 26"
-                  width={800}
-                  height={150}
-                  style={{
-                      width: '100%',
-                      height: 'auto',
-                      maxWidth: '400px'
-                  }}
-                  priority
-                  quality={90}
-                  />
-                  <p>Productos personalizados para el la sede futbolera 2026</p>
-              </div>
-              <div className={styles.sede26Grid}>
-                {products
-                  .filter(product => {
-                    // Mostrar si está en categoría Sede 26 O si es una variante exclusiva de Sede 26
-                    const isInSede26Category = SEDE_26_CATEGORIES.includes(product.category?.name)
-                    const exclusiveVariants = SEDE_26_EXCLUSIVE_VARIANTS[product.name] || []
-                    const isExclusiveVariant = exclusiveVariants.includes(product.variant)
-                    return isInSede26Category || isExclusiveVariant
-                  })
-                  .map(product => (
-                  <div key={product.id} className={styles.productCard}>
-                    <div className={styles.productImg}>
-                      {product.image ? (
-                        <Image 
-                          src={product.image} 
-                          alt={product.name}
-                          fill
-                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                          className={styles.productDetailImage}
-                          quality={80}
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className={styles.productImgPlaceholder}>✦</div>
-                      )}
-                    </div>
-                    <div className={styles.productInfo}>
-                      {product.category && (
-                        <p className={styles.productCategory}>{product.category.name}</p>
-                      )}
-                      <p className={styles.productName}>
-                        {product.name}
-                        {product.variant && <span className={styles.productVariant}> - {product.variant}</span>}
-                      </p>
-                      {product.description && (
-                        <div 
-                          className={styles.productDesc}
-                          dangerouslySetInnerHTML={{ __html: product.description }}
-                        />
-                      )}
-                      <div className={styles.productPriceContainer}>
-                        <p className={styles.productPrice}>{formatPrice(product.priceWithTax)}</p>
-                        <p className={styles.productPriceSmall}>IVA incluido</p>
-                      </div>
-                      
-                      <Link
-                        href={`/producto/${product.id}`}
-                        className={styles.productCardWhatsApp}
-                      >
-                        {/* Envíame más info 💌 */}
-                        Ver más detalles
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+          {activeSpecialSections.map(section => (
+            <SpecialSection
+              key={section.id}
+              section={section}
+              products={getSpecialSectionProducts(section)}
+              loading={specialLoading}
+              formatPrice={formatPrice}
+            />
+          ))}
         </>
       )}
 
@@ -405,7 +425,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Filtros - Usar categorías disponibles */}
+        {/* Filtros */}
         <div className={styles.filterBar}>
           {['Todos', ...availableCategories].map(cat => (
             <button
@@ -473,7 +493,6 @@ export default function Home() {
                     href={`/producto/${product.id}`}
                     className={styles.productCardWhatsApp}
                   >
-                    {/* Envíame más info 💌 */}
                     Ver más detalles
                   </Link>
                 </div>
@@ -487,27 +506,6 @@ export default function Home() {
       {SHOW_GALLERY && mounted && <Gallery />}
 
       {/* CLIENTES */}
-{/*       <section className={styles.clientes} id="clientes">
-        <span className={styles.sectionTag}>✦ Han confiado en nosotros</span>
-        <h2>Trabajamos con marcas increíbles</h2>
-        <p>Empresas y personas que eligieron hacer sus momentos más especiales</p>
-        <div className={styles.clientesGrid}>
-          {[
-            { name: 'MAKE', filename: 'logo-make.svg' },
-            { name: 'FITPASS', filename: 'logo-fitpass.svg' },
-            { name: 'VOALE', filename: 'logo-voale.svg' },
-            { name: 'CON CHANEL', filename: 'logo-conchanel.svg' }
-          ].map(client => (
-            <div key={client.name} className={styles.clienteLogo}>
-              <img 
-                src={`/images/${client.filename}`} 
-                alt={client.name}
-                className={styles.clienteLogoImg}
-              />
-            </div>
-          ))}
-        </div>
-      </section> */}
       {mounted && <ClientesCarousel />}
 
       {/* FOOTER / CONTACTO */}

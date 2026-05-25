@@ -5,38 +5,62 @@ const ODOO_USER = process.env.ODOO_USER
 const ODOO_TOKEN = process.env.ODOO_TOKEN
 const ODOO_DB = process.env.ODOO_DATABASE
 
-async function callOdooRPC(model, method, args = [], kwargs = {}) {
-  try {
-    const body = {
-      jsonrpc: '2.0',
-      method: 'call',
-      params: {
-        service: 'object',
-        method: 'execute_kw',
-        args: [ODOO_DB, 2, ODOO_TOKEN, model, method, args, kwargs],
-      },
+async function callOdooRPC(model, method, args = [], kwargs = {}, retries = 3) {
+  let lastError;
+  
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const body = {
+        jsonrpc: '2.0',
+        method: 'call',
+        params: {
+          service: 'object',
+          method: 'execute_kw',
+          args: [ODOO_DB, 2, ODOO_TOKEN, model, method, args, kwargs],
+        },
+      }
+
+      const response = await fetch(`${ODOO_URL}/jsonrpc`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+
+      const data = await response.json()
+
+      if (data.error) {
+        console.error(`Odoo RPC Error (attempt ${attempt}/${retries}):`, data.error)
+        lastError = new Error(data.error.data?.message || data.error.message || 'Odoo error')
+        
+        // Si falla y hay más intentos, espera 1 segundo antes de reintentar
+        if (attempt < retries) {
+          console.log(`Retrying in 1 second...`)
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          continue
+        }
+        throw lastError
+      }
+
+      // Si tuvo éxito después de reintentos, log
+      if (attempt > 1) {
+        console.log(`✅ Success after ${attempt} attempts`)
+      }
+      return data.result
+    } catch (error) {
+      console.error(`RPC Call Error (attempt ${attempt}/${retries}):`, error.message)
+      lastError = error
+      
+      // Si hay más intentos, espera 1 segundo antes de reintentar
+      if (attempt < retries) {
+        console.log(`Retrying in 1 second...`)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      }
     }
-
-    const response = await fetch(`${ODOO_URL}/jsonrpc`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
-
-    const data = await response.json()
-
-    if (data.error) {
-      console.error('Odoo RPC Error:', data.error)
-      throw new Error(data.error.data?.message || data.error.message || 'Odoo error')
-    }
-
-    return data.result
-  } catch (error) {
-    console.error('RPC Call Error:', error.message)
-    throw error
   }
+  
+  throw lastError
 }
 
 export async function GET() {
