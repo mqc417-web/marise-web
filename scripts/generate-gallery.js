@@ -41,10 +41,13 @@ async function generateGalleryJSON() {
     // Filtrar solo imágenes (jpg, jpeg, png, webp)
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
     const images = blobs
-      .filter(blob => {
-        const ext = path.extname(blob.pathname).toLowerCase();
-        return imageExtensions.includes(ext);
-      })
+    .filter(blob => {
+      // Excluir la carpeta MonArt/
+      if (blob.pathname.includes('MonArt/')) return false;
+      
+      const ext = path.extname(blob.pathname).toLowerCase();
+      return imageExtensions.includes(ext);
+    })
       .map((blob, index) => ({
         id: index + 1,
         url: blob.url,
