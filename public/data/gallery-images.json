@@ -2,197 +2,383 @@
   "images": [
     {
       "id": 1,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Bolsas_Bowlito.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Happy%20box%20grad%202026.webp",
       "alt": "Galería Marise - Imagen 1",
       "category": "trabajos"
     },
     {
       "id": 2,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_CaketoperNati.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Bolsas_Bowlito.webp",
       "alt": "Galería Marise - Imagen 2",
       "category": "trabajos"
     },
     {
       "id": 3,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Bluey.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_CaketoperNati.webp",
       "alt": "Galería Marise - Imagen 3",
       "category": "trabajos"
     },
     {
       "id": 4,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_IronMan.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Bluey.webp",
       "alt": "Galería Marise - Imagen 4",
       "category": "trabajos"
     },
     {
       "id": 5,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_JaviFest.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Flores.webp",
       "alt": "Galería Marise - Imagen 5",
       "category": "trabajos"
     },
     {
       "id": 6,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_MetaIronman.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_IronMan.webp",
       "alt": "Galería Marise - Imagen 6",
       "category": "trabajos"
     },
     {
       "id": 7,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Runner.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_JaviFest.webp",
       "alt": "Galería Marise - Imagen 7",
       "category": "trabajos"
     },
     {
       "id": 8,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Susi.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_MetaIronman.webp",
       "alt": "Galería Marise - Imagen 8",
       "category": "trabajos"
     },
     {
       "id": 9,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VaritasMagicas.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Runner.webp",
       "alt": "Galería Marise - Imagen 9",
       "category": "trabajos"
     },
     {
       "id": 10,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VidaNomada.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Snupy.webp",
       "alt": "Galería Marise - Imagen 10",
       "category": "trabajos"
     },
     {
       "id": 11,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketoppers_Troquelados.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_Susi.webp",
       "alt": "Galería Marise - Imagen 11",
       "category": "trabajos"
     },
     {
       "id": 12,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cards_Fitpass.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VaritasMagicas.webp",
       "alt": "Galería Marise - Imagen 12",
       "category": "trabajos"
     },
     {
       "id": 13,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cupcaketoppers.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketopper_VidaNomada.webp",
       "alt": "Galería Marise - Imagen 13",
       "category": "trabajos"
     },
     {
       "id": 14,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Encendedores.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Caketoppers_Troquelados.webp",
       "alt": "Galería Marise - Imagen 14",
       "category": "trabajos"
     },
     {
       "id": 15,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Esfera_Personalizada.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cards_Fitpass.webp",
       "alt": "Galería Marise - Imagen 15",
       "category": "trabajos"
     },
     {
       "id": 16,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Espejo.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Cupcaketoppers.webp",
       "alt": "Galería Marise - Imagen 16",
       "category": "trabajos"
     },
     {
       "id": 17,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Globo_Personalizado.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Encendedores.webp",
       "alt": "Galería Marise - Imagen 17",
       "category": "trabajos"
     },
     {
       "id": 18,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Invitacion.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Esfera_Personalizada.webp",
       "alt": "Galería Marise - Imagen 18",
       "category": "trabajos"
     },
     {
       "id": 19,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Mameluco_Bebe.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Espejo.webp",
       "alt": "Galería Marise - Imagen 19",
       "category": "trabajos"
     },
     {
       "id": 20,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Medallas_Olimpicas.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Flores_1D.webp",
       "alt": "Galería Marise - Imagen 20",
       "category": "trabajos"
     },
     {
       "id": 21,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Papel_Personalizado.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Globo_Personalizado.webp",
       "alt": "Galería Marise - Imagen 21",
       "category": "trabajos"
     },
     {
       "id": 22,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Playcase.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Invitacion.webp",
       "alt": "Galería Marise - Imagen 22",
       "category": "trabajos"
     },
     {
       "id": 23,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Recuerdito_Miel.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Mameluco_Bebe.webp",
       "alt": "Galería Marise - Imagen 23",
       "category": "trabajos"
     },
     {
       "id": 24,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Sobres_Make.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Medallas_ABWR.webp",
       "alt": "Galería Marise - Imagen 24",
       "category": "trabajos"
     },
     {
       "id": 25,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Charcuteria.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Medallas_Olimpicas.webp",
       "alt": "Galería Marise - Imagen 25",
       "category": "trabajos"
     },
     {
       "id": 26,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Termos.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Medallas_Yahel.webp",
       "alt": "Galería Marise - Imagen 26",
       "category": "trabajos"
     },
     {
       "id": 27,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Tag.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Papel_Personalizado.webp",
       "alt": "Galería Marise - Imagen 27",
       "category": "trabajos"
     },
     {
       "id": 28,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Esmerilada.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Plato_Esther.webp",
       "alt": "Galería Marise - Imagen 28",
       "category": "trabajos"
     },
     {
       "id": 29,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Tags_Cajas.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Playcase.webp",
       "alt": "Galería Marise - Imagen 29",
       "category": "trabajos"
     },
     {
       "id": 30,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Totebag.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Ramo_Billetes.webp",
       "alt": "Galería Marise - Imagen 30",
       "category": "trabajos"
     },
     {
       "id": 31,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Recuerdito_Miel.webp",
       "alt": "Galería Marise - Imagen 31",
       "category": "trabajos"
     },
     {
       "id": 32,
-      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker_Chupon.webp",
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Sobres_Make.webp",
       "alt": "Galería Marise - Imagen 32",
+      "category": "trabajos"
+    },
+    {
+      "id": 33,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Charcuteria.webp",
+      "alt": "Galería Marise - Imagen 33",
+      "category": "trabajos"
+    },
+    {
+      "id": 34,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Natacion.webp",
+      "alt": "Galería Marise - Imagen 34",
+      "category": "trabajos"
+    },
+    {
+      "id": 35,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Stickers_Termos.webp",
+      "alt": "Galería Marise - Imagen 35",
+      "category": "trabajos"
+    },
+    {
+      "id": 36,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Tag.webp",
+      "alt": "Galería Marise - Imagen 36",
+      "category": "trabajos"
+    },
+    {
+      "id": 37,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Esmerilada.webp",
+      "alt": "Galería Marise - Imagen 37",
+      "category": "trabajos"
+    },
+    {
+      "id": 38,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Fotos.webp",
+      "alt": "Galería Marise - Imagen 38",
+      "category": "trabajos"
+    },
+    {
+      "id": 39,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Taza_Tags_Cajas.webp",
+      "alt": "Galería Marise - Imagen 39",
+      "category": "trabajos"
+    },
+    {
+      "id": 40,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Totebag.webp",
+      "alt": "Galería Marise - Imagen 40",
+      "category": "trabajos"
+    },
+    {
+      "id": 41,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Trisuit_Tridente.webp",
+      "alt": "Galería Marise - Imagen 41",
+      "category": "trabajos"
+    },
+    {
+      "id": 42,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker.webp",
+      "alt": "Galería Marise - Imagen 42",
+      "category": "trabajos"
+    },
+    {
+      "id": 43,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Vasos_Sticker_Chupon.webp",
+      "alt": "Galería Marise - Imagen 43",
+      "category": "trabajos"
+    },
+    {
+      "id": 44,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_WavyBag_KpopDemonHunters.webp",
+      "alt": "Galería Marise - Imagen 44",
+      "category": "trabajos"
+    },
+    {
+      "id": 45,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_Winetag.webp",
+      "alt": "Galería Marise - Imagen 45",
+      "category": "trabajos"
+    },
+    {
+      "id": 46,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/Marise_YouAreNext_TagMini.webp",
+      "alt": "Galería Marise - Imagen 46",
+      "category": "trabajos"
+    },
+    {
+      "id": 47,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_0113.webp",
+      "alt": "Galería Marise - Imagen 47",
+      "category": "trabajos"
+    },
+    {
+      "id": 48,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_1231.webp",
+      "alt": "Galería Marise - Imagen 48",
+      "category": "trabajos"
+    },
+    {
+      "id": 49,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3122.webp",
+      "alt": "Galería Marise - Imagen 49",
+      "category": "trabajos"
+    },
+    {
+      "id": 50,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3124.webp",
+      "alt": "Galería Marise - Imagen 50",
+      "category": "trabajos"
+    },
+    {
+      "id": 51,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3503.webp",
+      "alt": "Galería Marise - Imagen 51",
+      "category": "trabajos"
+    },
+    {
+      "id": 52,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3640.webp",
+      "alt": "Galería Marise - Imagen 52",
+      "category": "trabajos"
+    },
+    {
+      "id": 53,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3869.webp",
+      "alt": "Galería Marise - Imagen 53",
+      "category": "trabajos"
+    },
+    {
+      "id": 54,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3977.webp",
+      "alt": "Galería Marise - Imagen 54",
+      "category": "trabajos"
+    },
+    {
+      "id": 55,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3979.webp",
+      "alt": "Galería Marise - Imagen 55",
+      "category": "trabajos"
+    },
+    {
+      "id": 56,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4050.webp",
+      "alt": "Galería Marise - Imagen 56",
+      "category": "trabajos"
+    },
+    {
+      "id": 57,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4107.webp",
+      "alt": "Galería Marise - Imagen 57",
+      "category": "trabajos"
+    },
+    {
+      "id": 58,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4109.webp",
+      "alt": "Galería Marise - Imagen 58",
+      "category": "trabajos"
+    },
+    {
+      "id": 59,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4286.webp",
+      "alt": "Galería Marise - Imagen 59",
+      "category": "trabajos"
+    },
+    {
+      "id": 60,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4368.webp",
+      "alt": "Galería Marise - Imagen 60",
+      "category": "trabajos"
+    },
+    {
+      "id": 61,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8063.webp",
+      "alt": "Galería Marise - Imagen 61",
+      "category": "trabajos"
+    },
+    {
+      "id": 62,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8130.webp",
+      "alt": "Galería Marise - Imagen 62",
+      "category": "trabajos"
+    },
+    {
+      "id": 63,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8209.webp",
+      "alt": "Galería Marise - Imagen 63",
       "category": "trabajos"
     }
   ],
-  "lastUpdated": "2026-04-22T22:28:19.743Z",
-  "totalImages": 32
+  "lastUpdated": "2026-05-26T16:24:52.163Z",
+  "totalImages": 63
 }
