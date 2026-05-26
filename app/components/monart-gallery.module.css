@@ -1,0 +1,421 @@
+/* ============================================
+   🎨 GALERÍA MONART - MASONRY LAYOUT
+   ============================================ */
+
+.gallery {
+  padding: 80px 48px;
+  background: #F4E1C8;
+  border-top: 1px solid #e8e0d6;
+}
+
+.galleryHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: #DAC4B7;
+  color: #7a4e2a;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.galleryHeader h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #2a1f1a;
+  margin-bottom: 10px;
+}
+
+.galleryHeader p {
+  font-size: 15px;
+  color: #6a5a50;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   MASONRY CONTAINER
+   ============================================ */
+
+.masonryContainer {
+  margin-bottom: 40px;
+}
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  auto-rows: 300px;
+}
+
+.masonryItem {
+  cursor: pointer;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0f0f0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.masonryItem:hover {
+  transform: scale(1.02);
+}
+
+/* Variación de tamaños para efecto masonry dinámico */
+.masonryItem:nth-child(5n + 1) {
+  grid-column: span 1;
+}
+
+.masonryItem:nth-child(5n + 2) {
+  grid-column: span 1;
+}
+
+.masonryItem:nth-child(5n + 3) {
+  grid-column: span 1;
+}
+
+/* Algunos items más grandes para romper la monotonía */
+.masonryItem:nth-child(7) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.masonryItem:nth-child(15) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.masonryItem:nth-child(23) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* ============================================
+   IMAGEN EN MASONRY
+   ============================================ */
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #faf3ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.masonryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.masonryItem:hover .masonryImage {
+  transform: scale(1.05);
+}
+
+/* Overlay en hover */
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  opacity: 0;
+}
+
+.masonryItem:hover .imageOverlay {
+  background: rgba(58, 46, 42, 0.4);
+  opacity: 1;
+}
+
+.zoomIcon {
+  font-size: 28px;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.masonryItem:hover .zoomIcon {
+  transform: scale(1.2);
+}
+
+/* ============================================
+   LIGHTBOX MODAL
+   ============================================ */
+
+.lightboxBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeIn 0.2s ease forwards;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightboxContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 85vh;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   BOTONES LIGHTBOX
+   ============================================ */
+
+.lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10001;
+}
+
+.lightboxClose:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10001;
+}
+
+.lightboxNav:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightboxPrev {
+  left: 20px;
+}
+
+.lightboxNext {
+  right: 20px;
+}
+
+/* ============================================
+   CONTADOR Y INFO LIGHTBOX
+   ============================================ */
+
+.lightboxCounter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 10001;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.lightboxInfo {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  max-width: 300px;
+  text-align: center;
+  z-index: 10001;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.loadingState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6a5a50;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #DAC4B7;
+  border-top-color: #9B6B4A;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .masonry {
+    grid-template-columns: repeat(3, 1fr);
+    auto-rows: 250px;
+  }
+
+  .masonryItem:nth-child(7) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .masonryItem:nth-child(15) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .masonryItem:nth-child(23) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 60px 20px;
+  }
+
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+    auto-rows: 200px;
+    gap: 12px;
+  }
+
+  .galleryHeader h2 {
+    font-size: 30px;
+  }
+
+  .lightboxNav {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .lightboxClose {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry {
+    grid-template-columns: 1fr;
+    auto-rows: 250px;
+    gap: 10px;
+  }
+
+  .gallery {
+    padding: 48px 16px;
+  }
+
+  .lightboxNav {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .lightboxClose {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}

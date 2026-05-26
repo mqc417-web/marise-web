@@ -1,0 +1,108 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_0113.webp",
+      "alt": "MonArt x Marise - Colaboración 1",
+      "category": "monart"
+    },
+    {
+      "id": 2,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_1231.webp",
+      "alt": "MonArt x Marise - Colaboración 2",
+      "category": "monart"
+    },
+    {
+      "id": 3,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3122.webp",
+      "alt": "MonArt x Marise - Colaboración 3",
+      "category": "monart"
+    },
+    {
+      "id": 4,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3124.webp",
+      "alt": "MonArt x Marise - Colaboración 4",
+      "category": "monart"
+    },
+    {
+      "id": 5,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3503.webp",
+      "alt": "MonArt x Marise - Colaboración 5",
+      "category": "monart"
+    },
+    {
+      "id": 6,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3640.webp",
+      "alt": "MonArt x Marise - Colaboración 6",
+      "category": "monart"
+    },
+    {
+      "id": 7,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3869.webp",
+      "alt": "MonArt x Marise - Colaboración 7",
+      "category": "monart"
+    },
+    {
+      "id": 8,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3977.webp",
+      "alt": "MonArt x Marise - Colaboración 8",
+      "category": "monart"
+    },
+    {
+      "id": 9,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_3979.webp",
+      "alt": "MonArt x Marise - Colaboración 9",
+      "category": "monart"
+    },
+    {
+      "id": 10,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4050.webp",
+      "alt": "MonArt x Marise - Colaboración 10",
+      "category": "monart"
+    },
+    {
+      "id": 11,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4107.webp",
+      "alt": "MonArt x Marise - Colaboración 11",
+      "category": "monart"
+    },
+    {
+      "id": 12,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4109.webp",
+      "alt": "MonArt x Marise - Colaboración 12",
+      "category": "monart"
+    },
+    {
+      "id": 13,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4286.webp",
+      "alt": "MonArt x Marise - Colaboración 13",
+      "category": "monart"
+    },
+    {
+      "id": 14,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_4368.webp",
+      "alt": "MonArt x Marise - Colaboración 14",
+      "category": "monart"
+    },
+    {
+      "id": 15,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8063.webp",
+      "alt": "MonArt x Marise - Colaboración 15",
+      "category": "monart"
+    },
+    {
+      "id": 16,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8130.webp",
+      "alt": "MonArt x Marise - Colaboración 16",
+      "category": "monart"
+    },
+    {
+      "id": 17,
+      "url": "https://mlkskhqxtiw8shel.public.blob.vercel-storage.com/MonArt/IMG_8209.webp",
+      "alt": "MonArt x Marise - Colaboración 17",
+      "category": "monart"
+    }
+  ],
+  "lastUpdated": "2026-05-26T03:16:29.383Z",
+  "totalImages": 17
+}

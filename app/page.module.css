@@ -907,3 +907,86 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================
+   🎨 SECCIÓN MONART X MARISE
+   ============================================ */
+
+.monartSection {
+  padding: 80px 48px;
+  /* background: #F4E1C8; */
+  background: #dcc5be;
+  border-top: 1px solid #e8e0d6;
+}
+
+.monartHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.monartHeader img {
+  max-width: 500px;
+  height: auto;
+}
+
+.monartContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.monartText p {
+  font-size: 20px;
+  color: #6a5a50;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.monartImage {
+  width: 100%;
+  height: auto;
+}
+
+.monartCTA {
+  text-align: center;
+}
+
+.monartButton {
+  display: inline-block;
+  background: #3a2e2a;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.monartButton:hover {
+  background: #2a1f1a;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .monartSection {
+    padding: 60px 20px;
+  }
+
+  .monartContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .monartHeader {
+    margin-bottom: 40px;
+  }
+
+  .monartHeader img {
+    max-width: 100%;
+  }
+}

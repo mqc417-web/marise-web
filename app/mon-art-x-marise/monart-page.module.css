@@ -1,0 +1,328 @@
+/* ============================================
+   🎨 PÁGINA MONART X MARISE
+   ============================================ */
+
+.main {
+  min-height: 100vh;
+  background: #FAF7F2;
+}
+
+/* ============================================
+   NAVEGACIÓN
+   ============================================ */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  background: white;
+  border-bottom: 1px solid #e8e0d6;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a {
+  color: #3a2e2a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:hover {
+  color: #9B6B4A;
+}
+
+.navCta {
+  background: #FFE499;
+  color: #3a2e2a;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.navCta:hover {
+  background: #FFD966;
+  transform: translateY(-2px);
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #3a2e2a;
+}
+
+.navLinksOpen {
+  display: flex;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.heroSection {
+  padding: 100px 48px;
+  text-align: center;
+  background: linear-gradient(135deg, #F4E1C8 0%, #FFE499 100%);
+  border-bottom: 1px solid #e8e0d6;
+}
+
+.heroTag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.6);
+  color: #7a4e2a;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.heroContent h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #2a1f1a;
+  margin: 20px 0;
+}
+
+.heroDesc {
+  font-size: 16px;
+  color: #6a5a50;
+  max-width: 600px;
+  margin: 20px auto 40px;
+  line-height: 1.6;
+}
+
+.heroButton {
+  display: inline-block;
+  background: #3a2e2a;
+  color: white;
+  padding: 12px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+
+.heroButton:hover {
+  background: #2a1f1a;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  background: #3a2e2a;
+  color: white;
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.footerText h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+
+.footerText p {
+  font-size: 15px;
+  color: #e0d5ca;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.footerActions {
+  margin: 40px 0;
+}
+
+.waBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25D366;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.waBtn:hover {
+  background: #20ba58;
+  transform: translateY(-2px);
+}
+
+.footerCopy {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  color: #a89c8f;
+}
+
+/* ============================================
+   WHATSAPP FLOTANTE
+   ============================================ */
+
+.waFloat {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.waFloat:hover {
+  background: #20ba58;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 16px 20px;
+  }
+
+  .navLinks {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    gap: 16px;
+    border-bottom: 1px solid #e8e0d6;
+  }
+
+  .navLinksOpen {
+    display: flex !important;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .navCta {
+    display: none;
+  }
+
+  .heroSection {
+    padding: 60px 20px;
+  }
+
+  .heroContent h1 {
+    font-size: 36px;
+  }
+
+  .heroDesc {
+    font-size: 15px;
+  }
+
+  .footer {
+    padding: 60px 20px;
+  }
+
+  .footerText h2 {
+    font-size: 28px;
+  }
+
+  .footerText p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 48px 16px;
+  }
+
+  .heroContent h1 {
+    font-size: 28px;
+  }
+
+  .heroDesc {
+    font-size: 14px;
+  }
+
+  .waFloat {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.instaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.instaLink {
+  background: transparent;
+  color: #FFE499;
+  border: 1.5px solid #FFE499;
+}
+
+.instaLink:hover {
+  background: rgba(255, 228, 153, 0.1);
+  /*border-color: #FFE499;*/
+}

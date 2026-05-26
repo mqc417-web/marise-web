@@ -14,7 +14,8 @@ export const CATALOG_CATEGORIES = [
   'Empaques y Cajas',
   'Platos',
   'álbumes, cuadernos y agendas',
-  'Fotos y Cuadros'
+  'Fotos y Cuadros',
+  'Party Goods'
 ];
 
 // ============================================
