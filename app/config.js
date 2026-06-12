@@ -35,7 +35,8 @@ export const SPECIAL_SECTIONS = [
     backgroundColor: '#e8f5f1', // Turquesa correcto
     categories: ['Sede 26'],
     exclusive_variants: {
-      'Velas de formas': ['Futbol']
+      'Velas de formas': ['Futbol'],
+      'Cupcaketopper Shaker': ['Círculo']
     }
   },
   {
