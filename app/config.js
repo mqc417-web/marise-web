@@ -15,7 +15,9 @@ export const CATALOG_CATEGORIES = [
   'Platos',
   'álbumes, cuadernos y agendas',
   'Fotos y Cuadros',
-  'Party Goods'
+  'Party Goods',
+  'Tazas, Vasos y Termos',
+  'Globos'
 ];
 
 // ============================================
@@ -51,7 +53,7 @@ export const SPECIAL_SECTIONS = [
   },
   {
     id: 'diadrepadre',
-    show: true,
+    show: false,
     name: '!Lo mejor,para el mejor!',
     emoji: '👔',
     icon: '/images/diadelpadre_largo.png',
