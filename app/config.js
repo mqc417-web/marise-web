@@ -30,7 +30,7 @@ export const CATALOG_CATEGORIES = [
 export const SPECIAL_SECTIONS = [
   {
     id: 'sede26',
-    show: true,
+    show: false,
     name: 'Productos personalizados para la sede futbolera 2026 ⚽',
     emoji: '⚽',
     icon: '/images/sede26_largo.png',
